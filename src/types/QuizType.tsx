@@ -1,6 +1,6 @@
 import { QuestionType } from "./QuestionType";
 
-export interface Quiz {
+export interface QuizType {
   id: number;
   theme: string;
   score: number;
