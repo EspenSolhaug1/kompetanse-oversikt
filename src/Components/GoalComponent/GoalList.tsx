@@ -1,5 +1,5 @@
 import { useState } from "react";
-import GoalItem from "./goalItem";
+import GoalItem from "./GoalItem";
 
 const GoalList = () => {
   const [goals, setGoals] = useState([]);
