@@ -1,22 +1,18 @@
 .navbar {
   display: flex;
-  position: absolute;
   background-color: blanchedalmond;
   height: 5em;
   width: 100vw;
   color: black;
-  top: -8px;
+  top: 0;
   left: 0;
 }
 .menu-items {
   display: flex;
-  flex-direction: row;
 }
 
 .menu-items ul {
   display: flex;
-  min-width: 10em;
-  height: 100%;
 }
 
 .filler {
