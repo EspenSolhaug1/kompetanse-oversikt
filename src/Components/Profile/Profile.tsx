@@ -1,3 +1,5 @@
+import "./Profile.css";
+import "../../App.css";
 import { useContext } from "react";
 import { myContext, myContextType } from "../../App.tsx";
 
@@ -6,7 +8,7 @@ const Profile = () => {
     myContext
   ) as myContextType;
   return (
-    <div>
+     <div className="contentBackground">
       <h1>Welcome, {currentUser?.name || "Guest"}!</h1>
       <p>Goals</p>
       <p>{currentUser?.goals[0].name}</p>
