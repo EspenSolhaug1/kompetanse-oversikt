@@ -1,5 +1,10 @@
-const Profile = () => {
-  return <></>;
-};
+import "./Profile.css";
+import "../../App.css";
 
-export default Profile;
+export default function Profile() {
+  return (
+    <div className="contentBackground">
+      <div></div>
+    </div>
+  );
+}
