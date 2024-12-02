@@ -19,6 +19,7 @@ const Profile = () => {
           <h3>epost@epost.com</h3>
         </div>
       </div>
+      <GoalListProfileComponent />
     </div>
   );
 };
