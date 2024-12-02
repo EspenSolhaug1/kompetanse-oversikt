@@ -3,6 +3,7 @@ import "../../App.css";
 import { useContext } from "react";
 import { myContext, myContextType } from "../../App.tsx";
 import GoalListProfileComponent from "../GoalProfile/GoalListProfileComponent.tsx";
+import SkillListProfileComponent from "../SkillProfile/SkillListProfileComponent.tsx";
 
 const Profile = () => {
   const { currentUser } = useContext(myContext) as myContextType;
@@ -20,6 +21,7 @@ const Profile = () => {
         </div>
       </div>
       <GoalListProfileComponent />
+      <SkillListProfileComponent />
     </div>
   );
 };

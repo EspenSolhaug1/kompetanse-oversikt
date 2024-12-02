@@ -1,0 +1,27 @@
+.skillInstanceComponent {
+  display: flex;
+  flex-direction: row;
+  min-height: 50px;
+  width: 60vw;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: inherit;
+  transition: background-color 0.3s ease;
+}
+
+.skillInstanceComponent > :hover {
+  background-color: #d12424;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skill-box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 70%;
+}
