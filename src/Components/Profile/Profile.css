@@ -2,7 +2,7 @@
   display: flex;
   width: 100vw;
   margin: 20px 20px 0px 20px;
-  height: 10em;
+  height: 7em;
   flex-direction: column;
 }
 
@@ -11,9 +11,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid black;
 }
 
+.top-info hr {
+  width: 70%;
+  background-color: black;
+}
 .top-info h1 {
   color: white;
   margin: 0;
