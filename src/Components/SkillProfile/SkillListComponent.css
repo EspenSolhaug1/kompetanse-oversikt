@@ -11,6 +11,7 @@
 
 .skillInstanceComponent > :hover {
   background-color: #d12424;
+  cursor: pointer;
 }
 
 .skills {
@@ -21,7 +22,12 @@
 
 .skill-box {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 70%;
+  flex-wrap: wrap; /* Allows wrapping */
+  gap: 2px; /* Optional: Adjust space between items */
+  width: 50%;
+}
+
+.skill-box > * {
+  flex: 1 1 calc(20% - 5px); /* Adjust to make 5 items fit per row */
+  box-sizing: border-box; /* Prevent overflow due to padding/borders */
 }

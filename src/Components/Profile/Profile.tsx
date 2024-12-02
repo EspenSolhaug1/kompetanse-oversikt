@@ -10,9 +10,11 @@ const Profile = () => {
   return (
     <div className="content-background">
       <div className="top-info">
-        <div className="name-and-btn">
-          <h1>{currentUser?.name || "Guest"}!</h1>
-          <button className="edit-profile-btn">Rediger</button>
+        <div className="d-flex">
+          <h1 className="justify-content-center">
+            {currentUser?.name || "Guest"}!
+          </h1>
+          <button className="justify-content-end">Rediger</button>
         </div>
         <hr></hr>
         <div className="title-and-epost">
