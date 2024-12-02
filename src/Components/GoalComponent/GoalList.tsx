@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import GoalItem from "./GoalItem";
+import { myContextType, myContext } from "../../App";
 
 const GoalList = () => {
-  const [goals, setGoals] = useState([]);
-  const userId: string | null = null;
+  const { currentUser } = useContext(myContext) as myContextType;
 
   return (
     <div className="goals">
-      {goals.map((goal, index) => {
+      {currentUser?.goals.map((goal, index) => {
         return <GoalItem key={index} goal={goal} />;
       })}
     </div>

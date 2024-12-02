@@ -23,7 +23,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState<UserType | null>(null);
   // Using dummy data in development
   useEffect(() => {
-    setCurrentUser(MockData[2]);
+    setCurrentUser(MockData[1]);
   }, []);
 
   /*

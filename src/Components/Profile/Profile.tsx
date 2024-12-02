@@ -2,11 +2,10 @@ import "./Profile.css";
 import "../../App.css";
 import { useContext } from "react";
 import { myContext, myContextType } from "../../App.tsx";
+import GoalListProfileComponent from "../GoalProfile/GoalListProfileComponent.tsx";
 
 const Profile = () => {
-  const { currentUser, setCurrentUser } = useContext(
-    myContext
-  ) as myContextType;
+  const { currentUser } = useContext(myContext) as myContextType;
   return (
     <div className="content-background">
       <div className="top-info">
