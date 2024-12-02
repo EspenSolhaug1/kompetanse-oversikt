@@ -8,14 +8,17 @@ const Profile = () => {
     myContext
   ) as myContextType;
   return (
-     <div className="contentBackground">
-      <h1>Welcome, {currentUser?.name || "Guest"}!</h1>
-      <p>Goals</p>
-      <p>{currentUser?.goals[0].name}</p>
-      <p>
-        <b>{currentUser?.goals[0].milestones[1].title}: </b>
-        {currentUser?.goals[0].milestones[1].description}
-      </p>
+    <div className="content-background">
+      <div className="top-info">
+        <div className="name-and-btn">
+          <h1>{currentUser?.name || "Guest"}!</h1>
+          <button className="edit-profile-btn">Rediger</button>
+        </div>
+        <div className="title-and-epost">
+          <h3>{currentUser?.jobTitle}</h3>
+          <h3>epost@epost.com</h3>
+        </div>
+      </div>
     </div>
   );
 };

@@ -4,6 +4,7 @@ export const MockData: UserType[] = [
   {
     id: 1,
     name: "Ola Nordmann",
+    jobTitle: "Fullstack .Net developer",
     goals: [
       {
         id: 1,
@@ -75,6 +76,7 @@ export const MockData: UserType[] = [
   {
     id: 2,
     name: "Kari Nordmann",
+    jobTitle: "Fullstack .Net developer",
     goals: [
       {
         id: 3,
@@ -145,6 +147,7 @@ export const MockData: UserType[] = [
   {
     id: 3,
     name: "Per Hansen",
+    jobTitle: "Frontend developer",
     goals: [
       {
         id: 5,
