@@ -1,0 +1,59 @@
+.goalInstanceComponent {
+  display: flex;
+  flex-direction: row;
+
+  min-height: 50px;
+  width: 60vw;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: inherit; /* Ensure it inherits background */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.goalInstanceComponent > :hover {
+  background-color: #d12424; /* Hover effect for the entire component */
+}
+.hover {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.goalInstanceComponent > * {
+  padding: 20px;
+  margin: 0;
+  width: 100%;
+}
+
+.goalsBox > :last-child {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.goalsBox > :first-child {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.goalTitle {
+  display: flex;
+  justify-content: flex-start;
+  font-size: x-large;
+}
+
+.difficulty {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.goals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.goalsBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
