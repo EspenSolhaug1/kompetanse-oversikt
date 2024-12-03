@@ -1,7 +1,8 @@
 import "./Navbar.css";
+
 export default function Navbar() {
   return (
-    <nav className="navbar">
+    <nav className="col navbar">
       <div className="menu-items">
         <ul>
           <li>

@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 import Profile from "./Components/Profile/Profile";
 import Login from "./Components/Login/Login";
-import Goal from "./Components/Goal/Goal";
+import GoalSite from "./Components/GoalSite/GoalSite";
 import { UserType } from "./types/UserType";
 import { createContext, useEffect, useState } from "react";
 import { MockData } from "./ApiData/MockData";
@@ -46,8 +46,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="goals/:id" element={<Goal />} />
+          <Route path="/" element={<Profile />} />
+          <Route path="goals/:id" element={<GoalSite />} />
         </Routes>
       </myContext.Provider>
     </>
