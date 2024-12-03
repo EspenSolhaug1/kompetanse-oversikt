@@ -7,7 +7,7 @@ const GoalInstanceProfile = (props: { goal: GoalType; index: number }) => {
       className="goalInstanceComponent"
       style={
         props.index % 2 === 0
-          ? { background: "#4b5043" }
+          ? { background: "#4b5043", color: "#ffffff" }
           : { background: "#9bc4bc", color: "#090909" }
       }
     >

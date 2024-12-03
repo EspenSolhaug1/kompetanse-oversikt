@@ -1,46 +1,13 @@
 .skillInstanceComponent {
-  display: flex;
-  flex-direction: row;
-  min-height: 50px;
-  width: 60vw;
-  margin: 0 auto;
-  overflow: hidden;
-  background-color: inherit;
-  transition: background-color 0.3s ease;
-}
-
-.skillInstanceComponent > :hover {
-  background-color: #d12424;
-  cursor: pointer;
-}
-
-.skills {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-size: small;
 }
 
 .skill-box {
-  display: flex;
-  flex-wrap: wrap; /* Allows wrapping */
-  gap: 2px; /* Optional: Adjust space between items */
-  width: 50%;
+  padding: 0 10em;
 }
 
-.skill-box > * {
-  flex: 1 1 calc(20% - 5px); /* Adjust to make 5 items fit per row */
-  box-sizing: border-box; /* Prevent overflow due to padding/borders */
-}
-
-.skill-card {
-  background-color: #3789db; /* Bootstrap's light background */
-  border: 1px solid #8fb3d6;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.skill-card:hover {
-  background-color: #0d62cb;
-  color: white;
-  transform: scale(1.05);
-  cursor: pointer;
+@media screen and (max-width: 900px) {
+  .skillInstanceComponent {
+    font-size: x-small;
+  }
 }

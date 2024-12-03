@@ -3,7 +3,7 @@
   flex-direction: row;
 
   min-height: 50px;
-  width: 60vw;
+  width: 45vw;
   margin: 0 auto;
   overflow: hidden;
   background-color: inherit; /* Ensure it inherits background */
@@ -38,7 +38,7 @@
 .goalTitle {
   display: flex;
   justify-content: flex-start;
-  font-size: x-large;
+  font-size: medium;
 }
 
 .difficulty {
