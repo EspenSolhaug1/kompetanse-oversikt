@@ -1,6 +1,28 @@
+import { UserLoginType } from "../types/UserLoginType";
 import { UserType } from "../types/UserType";
 
-export const MockData: UserType[] = [
+export const MockLoginData: UserLoginType[] = [
+  {
+    id: 1,
+    userId: 1,
+    email: "ola.nordmann@email.com",
+    password: "passord123",
+  },
+  {
+    id: 2,
+    userId: 2,
+    email: "kari.nordmann@email.com",
+    password: "1234567890",
+  },
+  {
+    id: 3,
+    userId: 3,
+    email: "per.hansen@email.com",
+    password: "0987654321",
+  },
+];
+
+export const MockProfileData: UserType[] = [
   {
     id: 1,
     name: "Ola Nordmann",
@@ -324,3 +346,5 @@ export const MockData: UserType[] = [
     totalPoints: 18.35,
   },
 ];
+
+//export default { MockProfileData, MockLoginData };
