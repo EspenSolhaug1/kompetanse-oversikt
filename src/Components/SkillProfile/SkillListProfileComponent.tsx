@@ -1,17 +1,17 @@
 import { useContext } from "react";
 import { myContext, myContextType } from "../../App";
 import SkillInstanceProfile from "./SkillInstanceProfileComponent";
+
 const SkillListProfileComponent = () => {
   const { currentUser } = useContext(myContext) as myContextType;
+
   return (
-    <div className="skills">
-      <h2>Kompetanse</h2>
-      <div className="skill-box">
-        {currentUser?.skills.map((skill, index) => {
-          return (
-            <SkillInstanceProfile key={index} skill={skill} index={index} />
-          );
-        })}
+    <div className="container my-4">
+      <h2 className="text-center mb-4">Kompetanse</h2>
+      <div className="row g-3">
+        {currentUser?.skills.map((skill, index) => (
+          <SkillInstanceProfile key={index} skill={skill} index={index} />
+        ))}
       </div>
     </div>
   );

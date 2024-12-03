@@ -1,5 +1,6 @@
 import Navbar from "./Components/NavBar/Navbar";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 import Profile from "./Components/Profile/Profile";
 import Login from "./Components/Login/Login";

@@ -31,3 +31,16 @@
   flex: 1 1 calc(20% - 5px); /* Adjust to make 5 items fit per row */
   box-sizing: border-box; /* Prevent overflow due to padding/borders */
 }
+
+.skill-card {
+  background-color: #3789db; /* Bootstrap's light background */
+  border: 1px solid #8fb3d6;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.skill-card:hover {
+  background-color: #0d62cb;
+  color: white;
+  transform: scale(1.05);
+  cursor: pointer;
+}
