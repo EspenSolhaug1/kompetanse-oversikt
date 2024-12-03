@@ -12,7 +12,7 @@ export default function Navbar() {
     setUserProfile(null);
   };
   return (
-    <nav className="navbar">
+    <nav className="col navbar">
       <div className="menu-items">
         <ul>
           <li>
