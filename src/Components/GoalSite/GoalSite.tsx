@@ -8,8 +8,8 @@ import "../../App.css";
 
 const GoalSite: React.FC = () => {
   const { id } = useParams();
-  const { currentUser } = useContext(myContext) as myContextType;
-  const goal: GoalType | undefined = currentUser?.goals.find(
+  const { userProfile } = useContext(myContext) as myContextType;
+  const goal: GoalType | undefined = userProfile?.goals.find(
     (g: GoalType) => g.id === Number(id)
   );
   console.log(goal?.id);
@@ -21,7 +21,7 @@ const GoalSite: React.FC = () => {
       </div>
       <hr />
       <div className="goalsBox">
-        {currentUser?.goals.map((goal, index) => {
+        {userProfile?.goals.map((goal, index) => {
           return <MilestoneComponent key={index} index={index} goal={goal} />;
         })}
       </div>
