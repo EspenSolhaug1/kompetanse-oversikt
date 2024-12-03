@@ -44,3 +44,7 @@
   transform: scale(1.05);
   cursor: pointer;
 }
+
+.text-center div {
+  margin: 0 10em;
+}

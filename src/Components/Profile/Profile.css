@@ -16,6 +16,7 @@
 .top-info hr {
   width: 70%;
   background-color: black;
+  align-self: center;
 }
 .top-info h1 {
   color: white;
