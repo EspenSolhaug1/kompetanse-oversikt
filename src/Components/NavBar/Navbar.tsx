@@ -1,6 +1,16 @@
+import { useContext } from "react";
+import { myContext, myContextType } from "../../App";
 import "./Navbar.css";
-
+import { useNavigate } from "react-router-dom";
 export default function Navbar() {
+  const { setUserProfile } = useContext(myContext) as myContextType;
+
+  const navigate = useNavigate();
+  const logOut = () => {
+    localStorage.removeItem("storedUser");
+    navigate(`/`);
+    setUserProfile(null);
+  };
   return (
     <nav className="col navbar">
       <div className="menu-items">
@@ -21,9 +31,9 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="filler"></div>
-      <div className="logout-button">
+      <button onClick={logOut} className="logout-button">
         <p>Logg ut</p>
-      </div>
+      </button>
     </nav>
   );
 }

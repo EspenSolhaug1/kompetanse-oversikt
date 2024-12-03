@@ -7,48 +7,65 @@ import Login from "./Components/Login/Login";
 import GoalSite from "./Components/GoalSite/GoalSite";
 import { UserType } from "./types/UserType";
 import { createContext, useEffect, useState } from "react";
-import { MockData } from "./ApiData/MockData";
 
 export interface myContextType {
-  currentUser: UserType | null;
-  setCurrentUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+  userProfile: UserType | null;
+  setUserProfile: React.Dispatch<React.SetStateAction<UserType | null>>;
 }
 const contextInitialValues = {
-  currentUser: null,
-  setCurrentUser: () => {},
+  userProfile: null,
+  setUserProfile: () => {},
 };
 
 export const myContext = createContext<myContextType>(contextInitialValues);
 
 function App() {
-  const [currentUser, setCurrentUser] = useState<UserType | null>(null);
-  // Using dummy data in development
+  const [userProfile, setUserProfile] = useState<UserType | null>(null);
+  /* Using dummy data in development
   useEffect(() => {
-    setCurrentUser(MockData[1]);
+    setUserProfile(MockProfileData?[1]);
   }, []);
+  */
 
   /*
   useEffect(() => {
     fetch(`http:localhost:4000/user`)
     .then((response) => response.json())
-    .then ((user) => setCurrentUser(user))
-  }, [currentUser]);
+    .then ((user) => setUserProfile(user))
+  }, [userProfile]);
   */
+
+  //Set the loggedin user the the last logged in
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("storedUser");
+
+    if (storedUser) {
+      setUserProfile(JSON.parse(storedUser));
+      console.log(JSON.parse(storedUser));
+    }
+  }, []);
 
   return (
     <>
       <myContext.Provider
         value={{
-          currentUser,
-          setCurrentUser,
+          userProfile,
+          setUserProfile,
         }}
       >
-        <Navbar />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Profile />} />
-          <Route path="goals/:id" element={<GoalSite />} />
-        </Routes>
+        {userProfile ? (
+          <>
+            <Navbar />
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Profile />} />
+              <Route path="goals/:id" element={<GoalSite />} />
+            </Routes>
+          </>
+        ) : (
+          <Login />
+        )}
       </myContext.Provider>
     </>
   );

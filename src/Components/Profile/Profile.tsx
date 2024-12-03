@@ -6,19 +6,19 @@ import GoalListProfileComponent from "../GoalProfile/GoalListProfileComponent.ts
 import SkillListProfileComponent from "../SkillProfile/SkillListProfileComponent.tsx";
 
 const Profile = () => {
-  const { currentUser } = useContext(myContext) as myContextType;
+  const { userProfile } = useContext(myContext) as myContextType;
   return (
     <div className="content-background">
       <div className="top-info">
         <div className="d-flex">
           <h1 className="justify-content-center">
-            {currentUser?.name || "Guest"}!
+            {userProfile?.name || "Guest"}!
           </h1>
           <button className="justify-content-end">Rediger</button>
         </div>
         <hr></hr>
         <div className="title-and-epost">
-          <h3>{currentUser?.jobTitle}</h3>
+          <h3>{userProfile?.jobTitle}</h3>
           <h3>epost@epost.com</h3>
         </div>
       </div>
