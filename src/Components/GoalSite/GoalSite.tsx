@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { myContext, myContextType } from "../../App";
 import { GoalType } from "../../types/GoalType";
 import MilestoneComponent from "./MilestoneComponent";
-import "./GoalSite.css";
 import "../../App.css";
 
 const GoalSite: React.FC = () => {

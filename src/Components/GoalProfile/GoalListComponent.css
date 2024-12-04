@@ -3,7 +3,7 @@
   flex-direction: row;
 
   min-height: 50px;
-  width: 60vw;
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
   background-color: inherit; /* Ensure it inherits background */
