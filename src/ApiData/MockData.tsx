@@ -1,6 +1,43 @@
 import { UserLoginType } from "../types/UserLoginType";
+import { MileQuizObjectType } from "../types/MileQuizObjectType";
 import { UserType } from "../types/UserType";
 
+export const MockMileQuizData: MileQuizObjectType[] = [
+  {
+    id: 1,
+    milestoneId: 7,
+    quiz: [
+      {
+        question:
+          "Which component of .NET is responsible for managing the execution of .NET programs?",
+        options: [
+          { A: ".NET Runtime" },
+          { B: "Common Language Runtime (CLR)" },
+          { C: "Framework Class Library (FCL)" },
+          { D: "ASP.NET" },
+        ],
+        correctAnswer: "B",
+      },
+      {
+        question:
+          "What is the purpose of the Global Assembly Cache (GAC) in .NET?",
+        options: [
+          { A: "To store application-specific configuration files" },
+          { B: "To enable debugging of .NET applications" },
+          { C: "To store assemblies for shared use by multiple applications" },
+          { D: "To manage memory allocation for .NET applications" },
+        ],
+        correctAnswer: "C",
+      },
+      {
+        question:
+          "Which programming language is NOT supported by the .NET framework?",
+        options: [{ A: "C#" }, { B: "VB.NET" }, { C: "Java" }, { D: "F#" }],
+        correctAnswer: "C",
+      },
+    ],
+  },
+];
 export const MockLoginData: UserLoginType[] = [
   {
     id: 1,
