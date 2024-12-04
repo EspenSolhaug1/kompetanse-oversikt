@@ -11,7 +11,6 @@ const GoalSite: React.FC = () => {
   const goal: GoalType | undefined = userProfile?.goals.find(
     (g: GoalType) => g.id === Number(id)
   );
-  console.log(goal?.id);
   return (
     <div className="content-background">
       <div className="col">
