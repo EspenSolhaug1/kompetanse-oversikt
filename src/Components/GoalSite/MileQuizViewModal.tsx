@@ -16,7 +16,7 @@ const MileQuizViewModal = (props: {
       className="custom-modal"
     >
       <h3>Hello!</h3>
-      <button onClick={props.closeModal}>click</button>
+      <button onClick={props.closeModal}>click!</button>
     </Modal>
   );
 };
