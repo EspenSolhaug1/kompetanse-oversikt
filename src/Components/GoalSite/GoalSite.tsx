@@ -20,8 +20,8 @@ const GoalSite: React.FC = () => {
       </div>
       <hr />
       <div className="goalsBox">
-        {userProfile?.goals.map((goal, index) => {
-          return <MilestoneComponent key={index} index={index} goal={goal} />;
+        {goal?.milestones.map((milestone, index) => {
+          return <MilestoneComponent key={index} index={index} milestone={milestone} />;
         })}
       </div>
     </div>
