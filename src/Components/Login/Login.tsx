@@ -78,7 +78,6 @@ const Login = () => {
     setEmail(event.target.value);
   };
 
-  console.log(userProfile + "1");
   return (
     <div className="login-page">
       <div className="login-intro">

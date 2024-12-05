@@ -1,10 +1,8 @@
 import { useContext, useState } from "react";
 import { myContext, myContextType } from "../../App";
-import "./GoalSite.css";
 import { MilestoneType } from "../../types/MilestoneType";
-import MileQuizViewModal from "./MileQuizViewModal";
+import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
 import { GoalType } from "../../types/GoalType";
-
 
 const MilestoneComponent = (props: {
   milestone: MilestoneType;
@@ -14,6 +12,7 @@ const MilestoneComponent = (props: {
   //Modal for quiz
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const openModal = () => {
+    console.log(props.milestone);
     setModalOpen(true);
   };
 

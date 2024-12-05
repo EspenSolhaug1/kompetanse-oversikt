@@ -42,7 +42,7 @@ function App() {
 
     if (storedUser) {
       setUserProfile(JSON.parse(storedUser));
-      console.log(JSON.parse(storedUser));
+      
     }
   }, []);
 
