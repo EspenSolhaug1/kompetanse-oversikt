@@ -1,9 +1,7 @@
-import { MileQuizQuestionType } from "../../../types/MileQuizType";
+import { QuizQuestionType } from "../../../types/QuizType";
 import OptionListComponent from "./OptionListComponent";
 
-const QuestionListComponent = (props: {
-  questions: MileQuizQuestionType[];
-}) => {
+const QuestionListComponent = (props: { questions: QuizQuestionType[] }) => {
   return (
     <div>
       {props.questions.map((q) => (
