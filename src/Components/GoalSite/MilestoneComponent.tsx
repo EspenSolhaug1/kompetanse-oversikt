@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { myContext, myContextType } from "../../App";
 import { MilestoneType } from "../../types/MilestoneType";
-import MileQuizViewModal from "./MileQuizViewModal";
+import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
 import { GoalType } from "../../types/GoalType";
 
 const MilestoneComponent = (props: {

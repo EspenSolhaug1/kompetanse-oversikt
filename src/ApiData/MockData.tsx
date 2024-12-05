@@ -1,4 +1,3 @@
-import { MileQuizType } from "../types/MileQuizType";
 import { UserLoginType } from "../types/UserLoginType";
 import { UserType } from "../types/UserType";
 

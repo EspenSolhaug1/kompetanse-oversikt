@@ -1,6 +1,7 @@
 import Modal from "react-modal";
-import { MilestoneType } from "../../types/MilestoneType";
-import "./Milestone.css";
+import { MilestoneType } from "../../../types/MilestoneType";
+import "../Milestone.css";
+import QuestionListComponent from "./QuestionListComponent";
 
 const MileQuizViewModal = (props: {
   milestone: MilestoneType;
@@ -26,7 +27,7 @@ const MileQuizViewModal = (props: {
       className="custom-modal"
     >
       <h3>Hello!</h3>
-      <h1>{props.milestone.quiz?.questions[0].question}</h1>
+      <QuestionListComponent questions={props.milestone.quiz.questions} />
       <button onClick={props.closeModal}>click!</button>
     </Modal>
   );
