@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { generateQuiz } from "../../types/QuizService";
-import { QuizQuestion } from "../../types/QuizType";
+import { QuizQuestionType } from "../../../types/QuizType";
 
 const QuizComponent: React.FC = () => {
   const [topic, setTopic] = useState<string>("");
   const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
-  const [quiz, setQuiz] = useState<QuizQuestion[]>([]);
+  const [quiz, setQuiz] = useState<QuizQuestionType[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [userAnswers, setUserAnswers] = useState<
     { selected: string; correct: string }[]
@@ -23,7 +22,7 @@ const QuizComponent: React.FC = () => {
     setScore(0);
     setCurrentQuestionIndex(0);
     setShowResults(false);
-
+    /*
     try {
       const quizData = await generateQuiz({ topic, numberOfQuestions });
       setQuiz(quizData);
@@ -32,6 +31,7 @@ const QuizComponent: React.FC = () => {
     } finally {
       setLoading(false);
     }
+      */
   };
 
   const handleOptionClick = (selectedOption: string) => {

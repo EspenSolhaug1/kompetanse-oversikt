@@ -1,5 +1,4 @@
 export interface MileQuizType {
-  isCompleted: boolean;
   score: number;
   questions: QuizQuestionType[];
 }
@@ -14,7 +13,7 @@ export interface QuizQuestionType {
 
 export interface GenerateQuizRequest {
   topic: string;
-  numberOfQuestions: number;
+  numberOfQuestions: string;
 }
 
 export interface GenerateQuizResponse {

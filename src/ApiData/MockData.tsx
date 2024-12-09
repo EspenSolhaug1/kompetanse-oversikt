@@ -33,7 +33,6 @@ export const MockProfileData: UserType[] = [
             description: "Intro to Csharp",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -73,7 +72,6 @@ export const MockProfileData: UserType[] = [
             description: "Syntax for Csharp",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -113,7 +111,6 @@ export const MockProfileData: UserType[] = [
             description: "Treasure maps that maps hashmaps",
             status: true,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -160,7 +157,6 @@ export const MockProfileData: UserType[] = [
             description: "Intro to AWS",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -200,7 +196,6 @@ export const MockProfileData: UserType[] = [
             description: "Intro to Azure",
             status: true,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -241,7 +236,6 @@ export const MockProfileData: UserType[] = [
               "Deploy treasure maps in maps in clouds in the sky on a rainy day in Sweden",
             status: true,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -288,7 +282,6 @@ export const MockProfileData: UserType[] = [
             description: "Understand ML algorithms and their applications",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -328,7 +321,6 @@ export const MockProfileData: UserType[] = [
             description: "Create a simple NN using TensorFlow or PyTorch",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -375,7 +367,6 @@ export const MockProfileData: UserType[] = [
             description: "Use tools to identify performance bottlenecks",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -415,7 +406,6 @@ export const MockProfileData: UserType[] = [
             description: "Improve performance-critical parts of the code",
             status: true,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -479,7 +469,6 @@ export const MockProfileData: UserType[] = [
             description: "Learn about components, props, and state",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -519,7 +508,6 @@ export const MockProfileData: UserType[] = [
             description: "Understand useReducer, useCallback, and useMemo",
             status: true,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -561,7 +549,6 @@ export const MockProfileData: UserType[] = [
             description: "Write tests for React components using Jest",
             status: true,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -605,7 +592,6 @@ export const MockProfileData: UserType[] = [
             description: "Search GitHub for beginner-friendly projects",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -645,7 +631,6 @@ export const MockProfileData: UserType[] = [
             description: "Fix a bug or add a feature and submit a pull request",
             status: true,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -685,7 +670,6 @@ export const MockProfileData: UserType[] = [
             description: "Participate in open-source discussions and forums",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -732,7 +716,6 @@ export const MockProfileData: UserType[] = [
             description: "Understand the fundamentals of Node.js",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -772,7 +755,6 @@ export const MockProfileData: UserType[] = [
             description: "Create and deploy a RESTful API",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -819,7 +801,6 @@ export const MockProfileData: UserType[] = [
             description: "Learn about Web Content Accessibility Guidelines",
             status: true,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
@@ -859,7 +840,6 @@ export const MockProfileData: UserType[] = [
             description: "Add ARIA roles and attributes to a project",
             status: false,
             quiz: {
-              isCompleted: false,
               score: 0,
               questions: [
                 {
