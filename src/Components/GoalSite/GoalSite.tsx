@@ -87,7 +87,7 @@ const GoalSite: React.FC = () => {
    */
   return (
     <div className="content-background">
-      <div className="col">
+      <div className="d-flex justify-content-around">
         <h1>{goal?.name}</h1>
         <button
           onClick={() => {

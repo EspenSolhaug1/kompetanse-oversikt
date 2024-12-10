@@ -44,7 +44,7 @@
 }
 /* Standard button style */
 button {
-  background-color: hsl(180, 100%, 15%);
+  background-color: var(--button-color);
   border-radius: 10%;
   border: none;
   color: white;
