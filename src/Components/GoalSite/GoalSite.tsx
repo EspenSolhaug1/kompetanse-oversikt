@@ -142,7 +142,6 @@ const GoalSite: React.FC = () => {
         quizFinished={quizFinished}
         setQuizFinished={setQuizFinished}
       />
-      ;
     </div>
   );
 };
