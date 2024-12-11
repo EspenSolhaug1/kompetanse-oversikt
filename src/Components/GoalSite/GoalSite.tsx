@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { myContext, myContextType } from "../../App";
 import { GoalType } from "../../types/GoalType";
@@ -6,6 +6,8 @@ import MilestoneComponent from "./MilestoneComponent";
 import "../../App.css";
 import { generateQuiz } from "./QuizService";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
+import axios from "axios";
+import { MileQuizType } from "../../types/QuizType";
 
 const GoalSite: React.FC = () => {
   const { id } = useParams();
@@ -16,62 +18,30 @@ const GoalSite: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [quizFinished, setQuizFinished] = useState<boolean>(false);
   const [theGoal, setTheGoal] = useState<GoalType | undefined>(undefined);
+  //const [milestone, setMilestone] = useState<MilestoneType | undefined>(undefined);
 
   //Declare modal open state
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
+  //Final quiz useRef
+  const displayedQuiz = useRef<MileQuizType | undefined>(undefined);
   useEffect(() => {
-    console.log("useeffect ONE triggered");
-    // Find the goal when userProfile or id changes
-    if (userProfile?.goalList) {
-      const goal = userProfile.goalList.find(
-        (g: GoalType) => g.id === Number(id)
-      );
-      setTheGoal(goal);
-    }
-  }, [userProfile, id]);
-
-  useEffect(() => {
-    //Her må sjekkast
-    /*
-    ****TODOO: 
-    sjekk om vi skal bruke "isGoal" "isMilestone" istedet for "data: Goaltype | MileStone"
-    Og sette condition for om det er goal eller milestone
-    VELDIG NÆRME
-    */
-    console.log("useeffect 2 triggered");
-
-    console.log("Goal name " + theGoal?.name);
-    const fetchQuizData = () => {
-      if (!theGoal?.milestoneList) return;
-
+    const fetchGoal = async () => {
       try {
-        // Create a copy of the milestones to avoid mutating props directly
-
-        for (let i = 0; i < theGoal.milestoneList.length; i++) {
-          const milestone = { ...theGoal.milestoneList[i] };
-          if (milestone.quizList.length === 0) {
-            milestone.quizList.forEach(async (element) => {
-              if (!element.status || element.questions.length != 0) {
-                await generateQuiz({
-                  topic: milestone.title, 
-                  numberOfQuestions: "4",
-                });
-              }
-            });
-          }
-        }
-      } catch (err) {
-        console.log("Failed to generate quiz. Please try again.");
-      } finally {
-        setLoading(false);
-        console.log("loading done");
+        const response = await axios.get<GoalType>(
+          `https://localhost:7293/api/goal/${Number(id)}`
+        );
+        setTheGoal(response.data);
+      } catch (error) {
+        console.error("Failed to fetch user profile:", error);
       }
     };
 
-    fetchQuizData();
-  }, [theGoal]);
-
+    if (userProfile?.goalList) {
+      fetchGoal();
+    }
+  }, [userProfile, id]);
+ 
   //Methods for opening and closing the modal
   const openModal = () => {
     setModalOpen(true);
@@ -82,21 +52,7 @@ const GoalSite: React.FC = () => {
     // Bruk Set quiz Finished for lagring?
   };
 
-  /**
-   * 06.des.24
-   * Topic og numberofQuestion blir lagt til etter generating
-   * Lagt til parameter på openModal, handleGenerate
-   * 
-   * 
-   * Knut foreslår:
-   * 
-   * inni handleGenerateQuiz (eller istedenfor?), lag en const som kjører når siden blir loada   * 
-   * (hvis milestone har tom quiz[] kjør, hvis ikke, hent)
-   * 
-      for (let i = 0; i < goal.milestones.length(); i++) {
-        const quizData = await generateQuiz({ milestone.title, "4" });
-        setQuiz(quizData);
-      }
+  /*
       if goal: 
       "with each topic has 2 questions, so it equals 2 times number of "
    */
@@ -123,12 +79,15 @@ const GoalSite: React.FC = () => {
               score={score}
               setScore={setScore}
               key={index}
+              index={index}
               milestone={milestone}
               openModal={openModal}
               closeModal={closeModal}
               modalOpen={modalOpen}
               quizFinished={quizFinished}
               setQuizFinished={setQuizFinished}
+              generateQuiz={generateQuiz}
+              setLoading={setLoading}
             />
           );
         })}
@@ -136,7 +95,7 @@ const GoalSite: React.FC = () => {
       <MileQuizViewModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        data={theGoal}
+        data={displayedQuiz.current?.questions}
         closeModal={closeModal}
         currentQuestionIndex={currentQuestionIndex}
         setCurrentQuestionIndex={setCurrentQuestionIndex}

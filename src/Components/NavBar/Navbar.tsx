@@ -20,7 +20,7 @@ export default function Navbar() {
   const secondButtonName =
     location.pathname === "/"
       ? "Mål"
-      : userProfile?.goals.find((goal) =>
+      : userProfile?.goalList.find((goal) =>
           location.pathname.includes(`/goals/${goal.id}`)
         )?.name || "Mål";
 
@@ -37,7 +37,7 @@ export default function Navbar() {
         <div className="dropdown">
           <button className="navbar-btn drop-btn">{secondButtonName}</button>
           <div className="drop-content">
-            {userProfile?.goals.map((goal) => (
+            {userProfile?.goalList.map((goal) => (
               <a
                 key={goal.id}
                 onClick={() => navigate(`/goals/${goal.id}`)}

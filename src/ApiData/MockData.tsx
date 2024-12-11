@@ -2,8 +2,8 @@ import { UserLoginType } from "../types/UserLoginType";
 
 export const MockLoginData: UserLoginType[] = [
   {
-    id: 2,
-    userId: 2,
+    id: 1,
+    userId: 1,
     email: "ateeb@gmail.com",
     password: "passord123",
   },

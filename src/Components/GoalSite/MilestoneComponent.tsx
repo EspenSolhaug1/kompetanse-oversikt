@@ -1,4 +1,10 @@
+import { useEffect, useRef } from "react";
 import { MilestoneType } from "../../types/MilestoneType";
+import {
+  GenerateQuizRequest,
+  MileQuizType,
+  QuizQuestionType,
+} from "../../types/QuizType";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
 
 const MilestoneComponent = (props: {
@@ -12,7 +18,43 @@ const MilestoneComponent = (props: {
   quizFinished: boolean;
   setQuizFinished: React.Dispatch<React.SetStateAction<boolean>>;
   milestone: MilestoneType;
+  index: number;
+  generateQuiz: (data: GenerateQuizRequest) => Promise<QuizQuestionType[]>;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const displayedQuiz = useRef<MileQuizType | undefined>(undefined);
+  useEffect(() => {
+    const generateQuizData = async () => {
+      if (!props.milestone) return;
+
+      try {
+        // Create a copy of the milestones to avoid mutating props directly
+
+        if (!props.milestone.quizList.find((q) => !q.status)) {
+          const quiz: QuizQuestionType[] = await props.generateQuiz({
+            topic: props.milestone.title,
+            numberOfQuestions: "4",
+            //refresh page (eller loading - Espen 2024)
+          });
+          //displayedQuiz.current!.questions = quiz;
+        } else {
+          displayedQuiz.current = props.milestone.quizList.find(
+            (q) => !q.status
+          );
+        }
+      } catch (err) {
+        console.log("Failed to generate quiz. Please try again.");
+        console.log(err);
+      } finally {
+        props.setLoading(false);
+        console.log("loading done");
+      }
+    };
+
+    if (props.milestone.quizList.length === 0) {
+      generateQuizData();
+    }
+  }, [props]);
   const buttonClicked = () => {
     props.openModal();
   };
@@ -34,7 +76,7 @@ const MilestoneComponent = (props: {
       <MileQuizViewModal
         isOpen={props.modalOpen}
         onClose={() => props.closeModal()}
-        data={props.milestone}
+        data={displayedQuiz.current?.questions}
         closeModal={props.closeModal}
         currentQuestionIndex={props.currentQuestionIndex}
         setCurrentQuestionIndex={props.setCurrentQuestionIndex}
