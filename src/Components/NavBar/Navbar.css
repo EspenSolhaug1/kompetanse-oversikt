@@ -1,57 +1,48 @@
-/* Reset Bootstrap styles for <ul> and <li> */
-.navbar .menu-items ul {
-  list-style: none; /* Remove default list style */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
-  display: flex; /* Align items horizontally */
-  gap: 20px; /* Add spacing between items */
+/* Reset list styles */
+.menu-items {
+  display: flex;
+  gap: 20px;
 }
 
-.navbar .menu-items li {
-  position: relative; /* Needed for dropdown positioning */
-  display: flex; /* Ensure alignment */
-  align-items: center; /* Center items vertically */
-}
-
-/* Navbar styling */
+/* Navbar container */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #004085; /* Dark blue */
+  background-color: #0056b3;
   padding: 10px 20px;
-  color: #fff;
+  color: white;
   font-family: Arial, sans-serif;
+  height: 60px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Menu item links */
-.menu-items a {
-  text-decoration: none;
+/* Navbar buttons */
+.navbar-btn {
+  background: none;
+  border: none;
   color: white;
-  height: 100%;
   font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
   padding: 5px 10px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.menu-items a:hover {
-  background-color: #0056b3;
+.drop-btn {
+  width: 300px;
+  text-align: start;
+}
+
+.navbar-btn:hover {
+  background-color: #004085;
   border-radius: 5px;
-  color: #fff;
+  color: white;
 }
 
 /* Dropdown */
-.drop-btn {
-  cursor: pointer;
-  padding: 5px 10px;
-  font-weight: bold;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.drop-btn:hover {
-  background-color: #0056b3;
-  border-radius: 5px;
+.dropdown {
+  position: relative;
 }
 
 .dropdown .drop-content {
@@ -82,21 +73,19 @@
   display: block;
 }
 
-/* Filler and logout button */
-.filler {
-  flex: 1;
-}
-
-.logout-button p {
-  cursor: pointer;
-  background-color: #dc3545; /* Red button */
+/* Logout button */
+.logout-button {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  font-weight: bold;
   padding: 5px 10px;
   border-radius: 5px;
-  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.logout-button p:hover {
+.logout-button:hover {
   background-color: #bd2130;
-  color: white;
 }

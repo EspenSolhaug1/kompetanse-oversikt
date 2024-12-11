@@ -1,8 +1,7 @@
 .goalInstanceComponent {
   display: flex;
   flex-direction: row;
-
-  min-height: 50px;
+  min-height: 30px;
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
@@ -11,7 +10,8 @@
 }
 
 .goalInstanceComponent > :hover {
-  background-color: #d12424; /* Hover effect for the entire component */
+  background-color: var(--hover-color);
+  cursor: pointer;
 }
 .hover {
   display: flex;
@@ -20,8 +20,7 @@
 }
 
 .goalInstanceComponent > * {
-  padding: 20px;
-  margin: 0;
+  padding: 10px;
   width: 100%;
 }
 
@@ -56,4 +55,13 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  span {
+    font-size: small;
+  }
+  .goalTitle {
+    font-size: medium;
+  }
 }

@@ -16,9 +16,19 @@ const MilestoneComponent = (props: {
   const buttonClicked = () => {
     props.openModal();
   };
-  console.log(props.milestone);
+  const hoverColor = props.index % 2 === 0 ? "#606855" : "#4b8176";
+
   return (
-    <div className="col goals ">
+    <div
+      className="col goals"
+      style={
+        {
+          background: props.index % 2 === 0 ? "#4b5043" : "#9bc4bc",
+          color: props.index % 2 === 0 ? "#e7e9eb" : "inherit",
+          "--hover-color": hoverColor, // Add custom property here
+        } as React.CSSProperties
+      }
+    >
       <h2>{props.milestone.title}</h2>
       <h3>{props.milestone.description}</h3>
       <MileQuizViewModal

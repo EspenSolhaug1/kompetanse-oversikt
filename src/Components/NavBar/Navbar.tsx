@@ -1,38 +1,58 @@
 import { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { myContext, myContextType } from "../../App";
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
-export default function Navbar() {
-  const { setUserProfile } = useContext(myContext) as myContextType;
 
+export default function Navbar() {
+  const { userProfile, setUserProfile } = useContext(
+    myContext
+  ) as myContextType;
   const navigate = useNavigate();
+  const location = useLocation();
+
   const logOut = () => {
     localStorage.removeItem("loggedInUser");
     navigate(`/`);
     setUserProfile(null);
   };
+
+  // Determine the name for the second button
+  const secondButtonName =
+    location.pathname === "/"
+      ? "Mål"
+      : userProfile?.goals.find((goal) =>
+          location.pathname.includes(`/goals/${goal.id}`)
+        )?.name || "Mål";
+
   return (
-    <nav className="col navbar">
+    <nav className="navbar">
+      {/* Left-side buttons */}
       <div className="menu-items">
-        <ul>
-          <li>
-            <a href="#">Ola Nordmænd</a>
-          </li>
-          <li>
-            <div className="dropdown">
-              <p className="drop-btn">Mål</p>
-              <div className="drop-content">
-                <a href="#">Link1</a>
-                <a href="#">Link2</a>
-                <a href="#">Link3</a>
-              </div>
-            </div>
-          </li>
-        </ul>
+        {/* User name button */}
+        <button className="navbar-btn" onClick={() => navigate("/")}>
+          {userProfile?.name || "User"}
+        </button>
+
+        {/* Goals button with dropdown */}
+        <div className="dropdown">
+          <button className="navbar-btn drop-btn">{secondButtonName}</button>
+          <div className="drop-content">
+            {userProfile?.goals.map((goal) => (
+              <a
+                key={goal.id}
+                onClick={() => navigate(`/goals/${goal.id}`)}
+                href="#"
+              >
+                {goal.name}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
-      <div className="filler"></div>
+
+      {/* Right-side logout button */}
       <button onClick={logOut} className="logout-button">
-        <p>Logg ut</p>
+        Logg ut
       </button>
     </nav>
   );
