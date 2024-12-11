@@ -9,7 +9,7 @@ const SkillListProfileComponent = () => {
     <div className="container my-4">
       <h2 className="text-center mb-4">Kompetanse</h2>
       <div className="row g-3">
-        {userProfile?.skills.map((skill, index) => (
+        {userProfile?.skillList.map((skill, index) => (
           <SkillInstanceProfile key={index} skill={skill} index={index} />
         ))}
       </div>

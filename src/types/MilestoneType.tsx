@@ -5,5 +5,5 @@ export interface MilestoneType {
   title: string;
   description: string;
   status: boolean;
-  quiz: MileQuizType;
+  quizList: MileQuizType[];
 }

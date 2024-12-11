@@ -7,7 +7,7 @@ export default function Navbar() {
 
   const navigate = useNavigate();
   const logOut = () => {
-    localStorage.removeItem("storedUser");
+    localStorage.removeItem("loggedInUser");
     navigate(`/`);
     setUserProfile(null);
   };

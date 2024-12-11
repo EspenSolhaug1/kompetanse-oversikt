@@ -7,7 +7,6 @@ export const generateQuiz = async (
   data: GenerateQuizRequest
 ): Promise<QuizQuestionType[]> => {
   try {
-    console.log(data);
     const response = await axios.post(`${API_URL}/generate`, data);
 
     // Extract the quiz content

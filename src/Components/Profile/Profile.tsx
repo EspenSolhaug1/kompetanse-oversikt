@@ -4,10 +4,10 @@ import { useContext } from "react";
 import { myContext, myContextType } from "../../App.tsx";
 import GoalListProfileComponent from "../GoalProfile/GoalListProfileComponent.tsx";
 import SkillListProfileComponent from "../SkillProfile/SkillListProfileComponent.tsx";
-import CodeReview from "./CodeReview.tsx";
 
 const Profile = () => {
   const { userProfile } = useContext(myContext) as myContextType;
+  console.log(userProfile);
   return (
     <div className="content-background">
       <div className="top-info">

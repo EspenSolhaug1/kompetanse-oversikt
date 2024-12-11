@@ -2,20 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { myContext, myContextType } from "../../App";
 import { UserLoginType } from "../../types/UserLoginType";
 import { useNavigate } from "react-router-dom";
-import { MockLoginData, MockProfileData } from "../../ApiData/MockData";
+import { MockLoginData } from "../../ApiData/MockData";
 import { UserType } from "../../types/UserType";
+import axios from "axios";
 
 const Login = () => {
-  const { userProfile, setUserProfile } = useContext(
-    myContext
-  ) as myContextType;
+  const { setUserProfile } = useContext(myContext) as myContextType;
   const [userLoggedIn, setUserLoggedIn] = useState<UserLoginType | undefined>(
     undefined
   );
 
   //Test arrays for fetching
   const [users, setUsers] = useState<UserLoginType[] | null>(null);
-  const [profiles, setProfiles] = useState<UserType[] | null>(null);
 
   //Test usestate for epost
   const [email, setEmail] = useState<string>("");
@@ -24,32 +22,35 @@ const Login = () => {
   const [errorBool, setErrorBool] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  //Dummy usereffect
+  //https://localhost:7293/api/users
+  //Useeffect to check login
   useEffect(() => {
     setUsers(MockLoginData);
   }, []);
+
   useEffect(() => {
-    setProfiles(MockProfileData);
+    const fetchUserProfile = async () => {
+      const loggedInUser = localStorage.getItem("loggedInUser");
+
+      if (loggedInUser) {
+        const theUser: UserLoginType = JSON.parse(loggedInUser);
+
+        try {
+          const response = await axios.get<UserType>(
+            `https://localhost:7293/api/profile/${theUser.id}`
+          );
+
+          setUserProfile(response.data);
+        } catch (error) {
+          console.error("Failed to fetch user profile:", error);
+        }
+      }
+    };
+
+    fetchUserProfile();
   }, [userLoggedIn]);
 
-  /*UseEffect for userLogin
-    useEffect(() => {
-      fetch(`http://localhost:4000/user/{id}`)
-        .then((response) => response.json())
-        .then((item) => setUserLoggedIn(item));
-    }, []);
-    
-    //UseEffect for profile info
-    useEffect(() => {
-      fetch(`http://localhost:4000/profile`)
-        .then((response) => response.json())
-        .then((item) => setUserProfile(item));
-    }, [userLoggedIn]);
-
-    */
-
   //Handle form
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!users?.find((useritem) => useritem.email === email)) {
@@ -60,15 +61,8 @@ const Login = () => {
       const theUser = users?.find((useritem) => useritem.email === email);
       if (theUser) {
         setUserLoggedIn(theUser);
-        const theProfile = profiles?.find(
-          (useritem) => useritem.id === theUser?.userId
-        );
-        if (theProfile) {
-          setUserProfile(theProfile);
-          localStorage.setItem("storedUser", JSON.stringify(theProfile));
-        }
+        localStorage.setItem("loggedInUser", JSON.stringify(theUser));
       }
-
       navigate(`/`);
     }
   };

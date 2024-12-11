@@ -1,21 +1,20 @@
 import { UserLoginType } from "../types/UserLoginType";
-import { UserType } from "../types/UserType";
 
 export const MockLoginData: UserLoginType[] = [
   {
-    id: 1,
-    userId: 1,
-    email: "ola.nordmann@email.com",
+    id: 2,
+    userId: 2,
+    email: "ateeb@gmail.com",
     password: "passord123",
   },
   {
-    id: 2,
-    userId: 2,
+    id: 3,
+    userId: 3,
     email: "kari.nordmann@email.com",
     password: "1234567890",
   },
 ];
-
+/*
 export const MockProfileData: UserType[] = [
   {
     id: 1,
@@ -26,6 +25,7 @@ export const MockProfileData: UserType[] = [
         id: 1,
         name: "Learn Csharp",
         difficulty: 2,
+        quiz: { score: 0, status: false, questions: [] },
         milestones: [
           {
             id: 1,
@@ -150,6 +150,7 @@ export const MockProfileData: UserType[] = [
         id: 2,
         name: "Practice use of cloud",
         difficulty: 1,
+        quiz: { score: 0, questions: [] },
         milestones: [
           {
             id: 4,
@@ -275,6 +276,7 @@ export const MockProfileData: UserType[] = [
         id: 7,
         name: "Explore AI",
         difficulty: 3,
+        quiz: { score: 0, questions: [] },
         milestones: [
           {
             id: 19,
@@ -360,6 +362,7 @@ export const MockProfileData: UserType[] = [
         id: 8,
         name: "Optimize Code Performance",
         difficulty: 2,
+        quiz: { score: 0, questions: [] },
         milestones: [
           {
             id: 21,
@@ -462,6 +465,7 @@ export const MockProfileData: UserType[] = [
         id: 3,
         name: "Master React",
         difficulty: 3,
+        quiz: { score: 0, questions: [] },
         milestones: [
           {
             id: 7,
@@ -470,36 +474,7 @@ export const MockProfileData: UserType[] = [
             status: false,
             quiz: {
               score: 0,
-              questions: [
-                {
-                  question:
-                    "Which component of .NET is responsible for managing the execution of .NET programs?",
-                  options: {
-                    A: ".NET Runtime",
-                    B: "Common Language Runtime (CLR)",
-                    C: "Framework Class Library (FCL)",
-                    D: "ASP.NET",
-                  },
-                  correctAnswer: "B",
-                },
-                {
-                  question:
-                    "What is the purpose of the Global Assembly Cache (GAC) in .NET?",
-                  options: {
-                    A: "To store application-specific configuration files",
-                    B: "To enable debugging of .NET applications",
-                    C: "To store assemblies for shared use by multiple applications",
-                    D: "To manage memory allocation for .NET applications",
-                  },
-                  correctAnswer: "C",
-                },
-                {
-                  question:
-                    "Which programming language is NOT supported by the .NET framework?",
-                  options: { A: "C#", B: "VB.NET", C: "Java", D: "F#" },
-                  correctAnswer: "C",
-                },
-              ],
+              questions: [],
             },
           },
           {
@@ -509,38 +484,7 @@ export const MockProfileData: UserType[] = [
             status: true,
             quiz: {
               score: 0,
-              questions: [
-                {
-                  question: "What is capital if world?",
-                  options: {
-                    A: "Norway",
-                    B: "Oslo",
-                    C: "Grønland",
-                    D: "ASP.NET",
-                  },
-                  correctAnswer: "B",
-                },
-                {
-                  question: "What is the purpose of life?",
-                  options: {
-                    A: "To store application-specific configuration files",
-                    B: "Walking the woods",
-                    C: "Programming",
-                    D: "Blanc",
-                  },
-                  correctAnswer: "C",
-                },
-                {
-                  question: "Which programming language exists?",
-                  options: {
-                    A: "C#",
-                    B: "net.com",
-                    C: "scripting",
-                    D: "Programming 7",
-                  },
-                  correctAnswer: "C",
-                },
-              ],
+              questions: [],
             },
           },
           {
@@ -550,33 +494,7 @@ export const MockProfileData: UserType[] = [
             status: true,
             quiz: {
               score: 0,
-              questions: [
-                {
-                  question: "How do you test you pc?",
-                  options: {
-                    A: "Quiz it",
-                    B: "Google search",
-                    C: "Candles",
-                    D: "Smashing it",
-                  },
-                  correctAnswer: "B",
-                },
-                {
-                  question: "What is 5*4",
-                  options: {
-                    A: "21",
-                    B: "-1",
-                    C: "20",
-                    D: "NaN",
-                  },
-                  correctAnswer: "C",
-                },
-                {
-                  question: "Rate this quiz",
-                  options: { A: "1", B: "2", C: "3", D: "Yes" },
-                  correctAnswer: "C",
-                },
-              ],
+              questions: [],
             },
           },
         ],
@@ -585,6 +503,7 @@ export const MockProfileData: UserType[] = [
         id: 4,
         name: "Contribute to Open Source",
         difficulty: 2,
+        quiz: { score: 0, questions: [] },
         milestones: [
           {
             id: 10,
@@ -709,6 +628,7 @@ export const MockProfileData: UserType[] = [
         id: 9,
         name: "Learn Node.js",
         difficulty: 2,
+        quiz: { score: 0, questions: [] },
         milestones: [
           {
             id: 23,
@@ -794,6 +714,7 @@ export const MockProfileData: UserType[] = [
         id: 10,
         name: "Enhance Accessibility Skills",
         difficulty: 1,
+        quiz: { score: 0, questions: [] },
         milestones: [
           {
             id: 25,
@@ -900,6 +821,8 @@ export const MockProfileData: UserType[] = [
     ],
     totalPoints: 15.45,
   },
+  
 ];
 
 //export default { MockProfileData, MockLoginData };
+*/
