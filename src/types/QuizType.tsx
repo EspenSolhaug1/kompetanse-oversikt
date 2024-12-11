@@ -1,4 +1,6 @@
 export interface MileQuizType {
+  id: number;
+  status: boolean;
   score: number;
   questions: QuizQuestionType[];
 }
@@ -6,9 +8,9 @@ export interface MileQuizType {
 export interface QuizQuestionType {
   question: string;
   options: {
-    [key: string]: string;
+    [key: number]: string;
   };
-  correctAnswer: string;
+  answer: number;
 }
 
 export interface GenerateQuizRequest {

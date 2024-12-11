@@ -2,7 +2,7 @@ import Modal from "react-modal";
 import { MilestoneType } from "../../../types/MilestoneType";
 import "../Milestone.css";
 import { GoalType } from "../../../types/GoalType";
-import { QuizQuestionType } from "../../../types/QuizType";
+import { MileQuizType, QuizQuestionType } from "../../../types/QuizType";
 
 const MileQuizViewModal = (props: {
   data: MilestoneType | GoalType | undefined;
@@ -11,30 +11,43 @@ const MileQuizViewModal = (props: {
   closeModal: () => void;
   currentQuestionIndex: number;
   setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
-  quiz: QuizQuestionType[];
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
-  topic: string;
   quizFinished: boolean;
   setQuizFinished: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const handleOptionClick = (selectedOption: string) => {
-    const currentQuestion = props.quiz[props.currentQuestionIndex];
+  // Type guard function
 
+  console.log("quizz");
+  console.log(props.data);
+
+  const handleOptionClick = (selectedOption: string) => {
+    const currentQuestion =
+      props.data?.quizList[0].questions[props.currentQuestionIndex];
+
+    // converts the letter to ASCII code, i.e "A" = 1
+    const letterPosition = selectedOption.charCodeAt(1) - 96;
     // Check if the selected option is correct and update the score
-    if (selectedOption === currentQuestion.correctAnswer) {
+    if (letterPosition === currentQuestion?.answer) {
       props.setScore((prev) => prev + 1);
     }
 
     // Move to the next question or show the results if it's the last question
-    if (props.currentQuestionIndex + 1 < props.quiz.length) {
-      props.setCurrentQuestionIndex((prev) => prev + 1);
-    } else {
-      props.setQuizFinished(true);
+    if (props.data) {
+      if (
+        props.currentQuestionIndex + 1 <
+        props.data.quizList[0].questions.length
+      ) {
+        props.setCurrentQuestionIndex((prev) => prev + 1);
+      } else {
+        props.setQuizFinished(true);
+        /*
       const passed: boolean =
         props.score / props.currentQuestionIndex + 1 > 0.8;
-      // props.setShowResults(true);
-      // TODO: QUIZ-FINISHED(bool)
+        */
+        // props.setShowResults(true);
+        // TODO: QUIZ-FINISHED(bool)
+      }
     }
   };
 
@@ -45,17 +58,24 @@ const MileQuizViewModal = (props: {
       appElement={document.getElementById("root") as HTMLElement}
       className="custom-modal"
     >
-      {props.quiz.length != 0 ? (
+      {props.data?.quizList[0]?.questions.length != 0 ? (
         <>
           <button onClick={props.closeModal}>x</button>
           <div>
             <h2>
-              Question {props.currentQuestionIndex + 1} of {props.quiz.length}
+              Question {props.currentQuestionIndex + 1} of{" "}
+              {props.data?.quizList[0]?.questions.length}
             </h2>
-            <p>{props.quiz[props.currentQuestionIndex].question}</p>
+            <p>
+              {
+                props.data?.quizList[0].questions[props.currentQuestionIndex]
+                  .question
+              }
+            </p>
             <div>
               {Object.entries(
-                props.quiz[props.currentQuestionIndex].options
+                props.data?.quizList[0]?.questions[props.currentQuestionIndex]
+                  ?.options || {}
               ).map(([key, value]) => (
                 <button
                   key={key}

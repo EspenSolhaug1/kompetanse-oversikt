@@ -11,7 +11,7 @@ export default function Navbar() {
   const location = useLocation();
 
   const logOut = () => {
-    localStorage.removeItem("storedUser");
+    localStorage.removeItem("loggedInUser");
     navigate(`/`);
     setUserProfile(null);
   };

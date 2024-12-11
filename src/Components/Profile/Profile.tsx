@@ -7,6 +7,7 @@ import SkillListProfileComponent from "../SkillProfile/SkillListProfileComponent
 
 const Profile = () => {
   const { userProfile } = useContext(myContext) as myContextType;
+  console.log(userProfile);
   return (
     <div className="content-background">
       <div className="top-info">

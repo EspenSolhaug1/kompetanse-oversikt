@@ -9,9 +9,8 @@ const SkillListProfileComponent = () => {
   return (
     <div className="container my-4">
       <h4 className="text-center mb-4">Kompetanse</h4>
-
       <div className="skills-container">
-        {userProfile?.skills.map((skill, index) => (
+        {userProfile?.skillList.map((skill, index) => (
           <SkillInstanceProfile key={index} skill={skill} />
         ))}
       </div>

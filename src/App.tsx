@@ -7,7 +7,7 @@ import Profile from "./Components/Profile/Profile";
 import Login from "./Components/Login/Login";
 import GoalSite from "./Components/GoalSite/GoalSite";
 import { UserType } from "./types/UserType";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export interface myContextType {
   userProfile: UserType | null;
@@ -36,15 +36,6 @@ function App() {
   }, [userProfile]);
   */
 
-  //Set the loggedin user the the last logged in
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("storedUser");
-
-    if (storedUser) {
-      setUserProfile(JSON.parse(storedUser));
-    }
-  }, []);
 
   return (
     <>

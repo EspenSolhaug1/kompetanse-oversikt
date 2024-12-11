@@ -9,7 +9,7 @@ const GoalListProfileComponent = () => {
     <div className="goals">
       <h3>Mine mål</h3>
       <div className="goalsBox">
-        {userProfile?.goals.map((goal, index) => {
+        {userProfile?.goalList.map((goal, index) => {
           return <GoalInstanceProfile key={index} goal={goal} index={index} />;
         })}
       </div>
