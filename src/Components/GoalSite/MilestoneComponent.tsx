@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MilestoneType } from "../../types/MilestoneType";
 import {
   GenerateQuizRequest,
@@ -22,9 +22,9 @@ const MilestoneComponent = (props: {
   generateQuiz: (data: GenerateQuizRequest) => Promise<QuizQuestionType[]>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const displayedQuiz = useRef<MileQuizType | undefined>(undefined);
   useEffect(() => {
     const generateQuizData = async () => {
+      console.log(props.milestone);
       if (!props.milestone) return;
 
       try {
@@ -36,11 +36,10 @@ const MilestoneComponent = (props: {
             numberOfQuestions: "4",
             //refresh page (eller loading - Espen 2024)
           });
+
           //displayedQuiz.current!.questions = quiz;
         } else {
-          displayedQuiz.current = props.milestone.quizList.find(
-            (q) => !q.status
-          );
+          // was displayedQuiz
         }
       } catch (err) {
         console.log("Failed to generate quiz. Please try again.");
@@ -54,6 +53,7 @@ const MilestoneComponent = (props: {
     if (props.milestone.quizList.length === 0) {
       generateQuizData();
     }
+    //console.log(displayedQuiz);
   }, [props]);
   const buttonClicked = () => {
     props.openModal();
@@ -73,18 +73,22 @@ const MilestoneComponent = (props: {
     >
       <h2>{props.milestone.title}</h2>
       <h3>{props.milestone.description}</h3>
-      <MileQuizViewModal
-        isOpen={props.modalOpen}
-        onClose={() => props.closeModal()}
-        data={displayedQuiz.current?.questions}
-        closeModal={props.closeModal}
-        currentQuestionIndex={props.currentQuestionIndex}
-        setCurrentQuestionIndex={props.setCurrentQuestionIndex}
-        score={props.score}
-        setScore={props.setScore}
-        quizFinished={props.quizFinished}
-        setQuizFinished={props.setQuizFinished}
-      />
+      {props.milestone.quizList.length != 0 ? (
+        <MileQuizViewModal
+          isOpen={props.modalOpen}
+          onClose={() => props.closeModal()}
+          data={props.milestone.quizList[1].questions}
+          closeModal={props.closeModal}
+          currentQuestionIndex={props.currentQuestionIndex}
+          setCurrentQuestionIndex={props.setCurrentQuestionIndex}
+          score={props.score}
+          setScore={props.setScore}
+          quizFinished={props.quizFinished}
+          setQuizFinished={props.setQuizFinished}
+        />
+      ) : (
+        <h2>Loading</h2>
+      )}
       <button onClick={buttonClicked}>Ta miniquiz</button>
     </div>
   );

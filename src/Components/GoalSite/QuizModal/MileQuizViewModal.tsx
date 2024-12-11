@@ -16,13 +16,11 @@ const MileQuizViewModal = (props: {
 }) => {
   // Type guard function
 
-  const handleOptionClick = (selectedOption: string) => {
+  const handleOptionClick = (selectedOption: number) => {
     const currentQuestion = props.data?.[props.currentQuestionIndex];
 
-    // converts the letter to ASCII code, i.e "A" = 1
-    const letterPosition = selectedOption.charCodeAt(1) - 96;
     // Check if the selected option is correct and update the score
-    if (letterPosition === currentQuestion?.answer) {
+    if (selectedOption === currentQuestion?.answer) {
       props.setScore((prev) => prev + 1);
     }
 
@@ -41,7 +39,6 @@ const MileQuizViewModal = (props: {
       }
     }
   };
-  console.log(props.data?.[0].question);
 
   return (
     <Modal
@@ -57,23 +54,23 @@ const MileQuizViewModal = (props: {
             <h2>
               Question {props.currentQuestionIndex + 1} of {props.data?.length}
             </h2>
-            <p>{props.data?.[props.currentQuestionIndex].question}</p>
+            <p>{props.data?.[props.currentQuestionIndex].content}</p>
             <div>
-              {Object.entries(
-                props.data?.[props.currentQuestionIndex]?.options || {}
-              ).map(([key, value]) => (
-                <button
-                  key={key}
-                  onClick={() => handleOptionClick(key)}
-                  style={{
-                    margin: "5px",
-                    padding: "10px",
-                    display: "block",
-                  }}
-                >
-                  {value}
-                </button>
-              ))}
+              {props.data?.[props.currentQuestionIndex]?.options.map(
+                (option, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleOptionClick(index)}
+                    style={{
+                      margin: "5px",
+                      padding: "10px",
+                      display: "block",
+                    }}
+                  >
+                    {option}
+                  </button>
+                )
+              )}
             </div>
             {props.quizFinished && (
               <button onClick={props.closeModal}>FinitoMarito</button>

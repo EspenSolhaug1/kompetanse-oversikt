@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { myContext, myContextType } from "../../App";
 import { GoalType } from "../../types/GoalType";
@@ -7,7 +7,7 @@ import "../../App.css";
 import { generateQuiz } from "./QuizService";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
 import axios from "axios";
-import { MileQuizType } from "../../types/QuizType";
+import { MilestoneType } from "../../types/MilestoneType";
 
 const GoalSite: React.FC = () => {
   const { id } = useParams();
@@ -18,13 +18,13 @@ const GoalSite: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [quizFinished, setQuizFinished] = useState<boolean>(false);
   const [theGoal, setTheGoal] = useState<GoalType | undefined>(undefined);
-  //const [milestone, setMilestone] = useState<MilestoneType | undefined>(undefined);
+  const [milestoneListObj, setMilestoneListObj] = useState<
+    MilestoneType[] | undefined
+  >(undefined);
 
   //Declare modal open state
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  //Final quiz useRef
-  const displayedQuiz = useRef<MileQuizType | undefined>(undefined);
   useEffect(() => {
     const fetchGoal = async () => {
       try {
@@ -41,7 +41,7 @@ const GoalSite: React.FC = () => {
       fetchGoal();
     }
   }, [userProfile, id]);
- 
+
   //Methods for opening and closing the modal
   const openModal = () => {
     setModalOpen(true);
@@ -56,6 +56,12 @@ const GoalSite: React.FC = () => {
       if goal: 
       "with each topic has 2 questions, so it equals 2 times number of "
    */
+  useEffect(() => {
+    if (theGoal != undefined) {
+      setMilestoneListObj(theGoal.milestoneList);
+      // console.log(milestoneListObj);
+    }
+  }, [theGoal]);
 
   return (
     <div className="content-background">
@@ -71,39 +77,28 @@ const GoalSite: React.FC = () => {
       </div>
       <hr />
       <div className="goalsBox">
-        {theGoal?.milestoneList?.map((milestone, index) => {
-          return (
-            <MilestoneComponent
-              currentQuestionIndex={currentQuestionIndex}
-              setCurrentQuestionIndex={setCurrentQuestionIndex}
-              score={score}
-              setScore={setScore}
-              key={index}
-              index={index}
-              milestone={milestone}
-              openModal={openModal}
-              closeModal={closeModal}
-              modalOpen={modalOpen}
-              quizFinished={quizFinished}
-              setQuizFinished={setQuizFinished}
-              generateQuiz={generateQuiz}
-              setLoading={setLoading}
-            />
-          );
-        })}
+        {milestoneListObj &&
+          milestoneListObj.map((milestone, index) => {
+            return (
+              <MilestoneComponent
+                currentQuestionIndex={currentQuestionIndex}
+                setCurrentQuestionIndex={setCurrentQuestionIndex}
+                score={score}
+                setScore={setScore}
+                key={index}
+                index={index}
+                milestone={milestone}
+                openModal={openModal}
+                closeModal={closeModal}
+                modalOpen={modalOpen}
+                quizFinished={quizFinished}
+                setQuizFinished={setQuizFinished}
+                generateQuiz={generateQuiz}
+                setLoading={setLoading}
+              />
+            );
+          })}
       </div>
-      <MileQuizViewModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        data={displayedQuiz.current?.questions}
-        closeModal={closeModal}
-        currentQuestionIndex={currentQuestionIndex}
-        setCurrentQuestionIndex={setCurrentQuestionIndex}
-        score={score}
-        setScore={setScore}
-        quizFinished={quizFinished}
-        setQuizFinished={setQuizFinished}
-      />
     </div>
   );
 };

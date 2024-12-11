@@ -6,10 +6,8 @@ export interface MileQuizType {
 }
 
 export interface QuizQuestionType {
-  question: string;
-  options: {
-    [key: number]: string;
-  };
+  content: string;
+  options: string[];
   answer: number;
 }
 
