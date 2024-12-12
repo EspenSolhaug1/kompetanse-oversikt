@@ -1,10 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { MilestoneType } from "../../types/MilestoneType";
-import {
-  GenerateQuizRequest,
-  MileQuizType,
-  QuizQuestionType,
-} from "../../types/QuizType";
+import { GenerateQuizRequest, QuizQuestionType } from "../../types/QuizType";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
 
 const MilestoneComponent = (props: {
@@ -21,10 +17,13 @@ const MilestoneComponent = (props: {
   index: number;
   generateQuiz: (data: GenerateQuizRequest) => Promise<QuizQuestionType[]>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  quizDisplayed: QuizQuestionType[] | undefined;
+  setQuizDisplayed: React.Dispatch<
+    React.SetStateAction<QuizQuestionType[] | undefined>
+  >;
 }) => {
   useEffect(() => {
     const generateQuizData = async () => {
-      console.log(props.milestone);
       if (!props.milestone) return;
 
       try {
@@ -39,7 +38,7 @@ const MilestoneComponent = (props: {
 
           //displayedQuiz.current!.questions = quiz;
         } else {
-          // was displayedQuiz
+          //
         }
       } catch (err) {
         console.log("Failed to generate quiz. Please try again.");
@@ -53,8 +52,9 @@ const MilestoneComponent = (props: {
     if (props.milestone.quizList.length === 0) {
       generateQuizData();
     }
-    //console.log(displayedQuiz);
+    //console.log(props.milestone);
   }, [props]);
+
   const buttonClicked = () => {
     props.openModal();
   };
@@ -77,7 +77,7 @@ const MilestoneComponent = (props: {
         <MileQuizViewModal
           isOpen={props.modalOpen}
           onClose={() => props.closeModal()}
-          data={props.milestone.quizList[1].questions}
+          data={props.quizDisplayed}
           closeModal={props.closeModal}
           currentQuestionIndex={props.currentQuestionIndex}
           setCurrentQuestionIndex={props.setCurrentQuestionIndex}
@@ -85,6 +85,8 @@ const MilestoneComponent = (props: {
           setScore={props.setScore}
           quizFinished={props.quizFinished}
           setQuizFinished={props.setQuizFinished}
+          setQuizDisplayed={props.setQuizDisplayed}
+          milestone={props.milestone}
         />
       ) : (
         <h2>Loading</h2>

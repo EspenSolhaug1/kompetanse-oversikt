@@ -5,9 +5,9 @@ import { GoalType } from "../../types/GoalType";
 import MilestoneComponent from "./MilestoneComponent";
 import "../../App.css";
 import { generateQuiz } from "./QuizService";
-import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
 import axios from "axios";
 import { MilestoneType } from "../../types/MilestoneType";
+import { QuizQuestionType } from "../../types/QuizType";
 
 const GoalSite: React.FC = () => {
   const { id } = useParams();
@@ -21,6 +21,9 @@ const GoalSite: React.FC = () => {
   const [milestoneListObj, setMilestoneListObj] = useState<
     MilestoneType[] | undefined
   >(undefined);
+  const [quizDisplayed, setQuizDisplayed] = useState<
+    QuizQuestionType[] | undefined
+  >([]);
 
   //Declare modal open state
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -95,6 +98,8 @@ const GoalSite: React.FC = () => {
                 setQuizFinished={setQuizFinished}
                 generateQuiz={generateQuiz}
                 setLoading={setLoading}
+                quizDisplayed={quizDisplayed}
+                setQuizDisplayed={setQuizDisplayed}
               />
             );
           })}

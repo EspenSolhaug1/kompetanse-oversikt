@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import "../Milestone.css";
 import { QuizQuestionType } from "../../../types/QuizType";
+import { MilestoneType } from "../../../types/MilestoneType";
 
 const MileQuizViewModal = (props: {
   data: QuizQuestionType[] | undefined;
@@ -13,6 +14,10 @@ const MileQuizViewModal = (props: {
   setScore: React.Dispatch<React.SetStateAction<number>>;
   quizFinished: boolean;
   setQuizFinished: React.Dispatch<React.SetStateAction<boolean>>;
+  setQuizDisplayed: React.Dispatch<
+    React.SetStateAction<QuizQuestionType[] | undefined>
+  >;
+  milestone: MilestoneType;
 }) => {
   // Type guard function
 
@@ -39,6 +44,12 @@ const MileQuizViewModal = (props: {
       }
     }
   };
+  if (props.milestone) {
+    props.setQuizDisplayed(
+      props.milestone.quizList.find((q) => !q.status)?.questions
+    );
+  }
+  console.log(props.data);
 
   return (
     <Modal
@@ -47,7 +58,7 @@ const MileQuizViewModal = (props: {
       appElement={document.getElementById("root") as HTMLElement}
       className="custom-modal"
     >
-      {props.data?.length != 0 ? (
+      {props.data != undefined ? (
         <>
           <button onClick={props.closeModal}>x</button>
           <div>
