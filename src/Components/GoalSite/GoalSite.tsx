@@ -8,9 +8,7 @@ import { generateQuiz } from "./QuizService";
 import axios from "axios";
 import { MilestoneType } from "../../types/MilestoneType";
 import { QuizQuestionType } from "../../types/QuizType";
-import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
 import AddMilestoneComponent from "./AddMilestoneComponent";
-
 
 const GoalSite: React.FC = () => {
   const { id } = useParams();
@@ -83,22 +81,15 @@ const GoalSite: React.FC = () => {
       </div>
       <hr />
       <div className="goalsBox">
-        {goal?.milestones.map((milestone, index) => {
+        {milestoneListObj?.map((milestone, index) => {
           return (
             <MilestoneComponent
-              topic={topic}
-              setTopic={setTopic}
-              numberOfQuestions={numberOfQuestions}
-              setNumberOfQuestions={setNumberOfQuestions}
-              quiz={quiz}
               currentQuestionIndex={currentQuestionIndex}
+              generateQuiz={generateQuiz}
               setCurrentQuestionIndex={setCurrentQuestionIndex}
               score={score}
               setScore={setScore}
-              loading={loading}
               setLoading={setLoading}
-              error={error}
-              setError={setError}
               key={index}
               index={index}
               milestone={milestone}
@@ -107,69 +98,17 @@ const GoalSite: React.FC = () => {
               modalOpen={modalOpen}
               quizFinished={quizFinished}
               setQuizFinished={setQuizFinished}
+              quizDisplayed={quizDisplayed}
+              setQuizDisplayed={setQuizDisplayed}
             />
           );
-
         })}
       </div>
-            <AddMilestoneComponent
-              topic={topic}
-              setTopic={setTopic}
-              numberOfQuestions={numberOfQuestions}
-              setNumberOfQuestions={setNumberOfQuestions}
-              quiz={quiz}
-              currentQuestionIndex={currentQuestionIndex}
-              setCurrentQuestionIndex={setCurrentQuestionIndex}
-              score={score}
-              setScore={setScore}
-              loading={loading}
-              setLoading={setLoading}
-              error={error}
-              setError={setError}
-              openModal={openModal}
-              closeModal={closeModal}
-              modalOpen={modalOpen}
-              quizFinished={quizFinished}
-              setQuizFinished={setQuizFinished}
-            />
-      <MileQuizViewModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        data={goal}
-        closeModal={closeModal}
-        currentQuestionIndex={currentQuestionIndex}
-        setCurrentQuestionIndex={setCurrentQuestionIndex}
-        quiz={quiz}
-        score={score}
-        setScore={setScore}
-        topic={topic}
-        quizFinished={quizFinished}
-        setQuizFinished={setQuizFinished}
+      <AddMilestoneComponent
+        setLoading={setLoading}
+        loading={loading}
+        index={2}
       />
-        {milestoneListObj &&
-          milestoneListObj.map((milestone, index) => {
-            return (
-              <MilestoneComponent
-                currentQuestionIndex={currentQuestionIndex}
-                setCurrentQuestionIndex={setCurrentQuestionIndex}
-                score={score}
-                setScore={setScore}
-                key={index}
-                index={index}
-                milestone={milestone}
-                openModal={openModal}
-                closeModal={closeModal}
-                modalOpen={modalOpen}
-                quizFinished={quizFinished}
-                setQuizFinished={setQuizFinished}
-                generateQuiz={generateQuiz}
-                setLoading={setLoading}
-                quizDisplayed={quizDisplayed}
-                setQuizDisplayed={setQuizDisplayed}
-              />
-            );
-          })}
-      </div>
     </div>
   );
 };

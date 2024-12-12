@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MilestoneType } from "../../types/MilestoneType";
 import { GenerateQuizRequest, QuizQuestionType } from "../../types/QuizType";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";

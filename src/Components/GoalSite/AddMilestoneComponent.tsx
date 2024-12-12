@@ -1,31 +1,12 @@
-import { MilestoneType } from "../../types/MilestoneType";
-import { QuizQuestionType } from "../../types/QuizType";
-
 const AddMilestoneComponent = (props: {
-  topic: string;
-  setTopic: React.Dispatch<React.SetStateAction<string>>;
-  numberOfQuestions: string;
-  setNumberOfQuestions: React.Dispatch<React.SetStateAction<string>>;
-  quiz: QuizQuestionType[];
-  currentQuestionIndex: number;
-  setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
-  score: number;
-  setScore: React.Dispatch<React.SetStateAction<number>>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  error: string;
-  setError: React.Dispatch<React.SetStateAction<string>>;
-  openModal: (title: string, numb: string) => void;
-  closeModal: () => void;
-  modalOpen: boolean;
-  quizFinished: boolean;
-  setQuizFinished: React.Dispatch<React.SetStateAction<boolean>>;
-  milestone: MilestoneType;
   index: number;
-  goalId: string; // Added to specify the goal ID
 }) => {
   const buttonClicked = async () => {
-    const milestoneTitle = (document.getElementById("milestoneValue") as HTMLInputElement).value;
+    const milestoneTitle = (
+      document.getElementById("milestoneValue") as HTMLInputElement
+    ).value;
 
     if (!milestoneTitle.trim()) {
       alert("Milestone title cannot be empty!");
@@ -40,13 +21,16 @@ const AddMilestoneComponent = (props: {
 
     try {
       props.setLoading(true);
-      const response = await fetch(`https://localhost:7293/api/milestone/goal/${1}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(milestone),
-      });
+      const response = await fetch(
+        `https://localhost:7293/api/milestone/goal/${1}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(milestone),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to add milestone. Please try again.");
