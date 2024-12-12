@@ -1,14 +1,14 @@
 export interface MileQuizType {
+  id: number;
+  status: boolean;
   score: number;
   questions: QuizQuestionType[];
 }
 
 export interface QuizQuestionType {
-  question: string;
-  options: {
-    [key: string]: string;
-  };
-  correctAnswer: string;
+  content: string;
+  options: string[];
+  answer: number;
 }
 
 export interface GenerateQuizRequest {

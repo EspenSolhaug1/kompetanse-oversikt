@@ -34,17 +34,17 @@ const QuizComponent: React.FC = () => {
       */
   };
 
-  const handleOptionClick = (selectedOption: string) => {
+  const handleOptionClick = (selectedOption: number) => {
     const currentQuestion = quiz[currentQuestionIndex];
 
     // Record the user's answer and the correct answer
     setUserAnswers((prev) => [
       ...prev,
-      { selected: selectedOption, correct: currentQuestion.correctAnswer },
+      { selected: selectedOption, correct: currentQuestion.answer },
     ]);
 
     // Check if the selected option is correct and update the score
-    if (selectedOption === currentQuestion.correctAnswer) {
+    if (selectedOption === currentQuestion.answer) {
       setScore((prev) => prev + 1);
     }
 
