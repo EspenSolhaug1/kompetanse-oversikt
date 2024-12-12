@@ -7,6 +7,7 @@ import "../../App.css";
 import { generateQuiz } from "./QuizService";
 import { QuizQuestionType } from "../../types/QuizType";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
+import AddMilestoneComponent from "./AddMilestoneComponent";
 
 const GoalSite: React.FC = () => {
   const { id } = useParams();
@@ -126,8 +127,29 @@ const GoalSite: React.FC = () => {
               setQuizFinished={setQuizFinished}
             />
           );
+
         })}
       </div>
+            <AddMilestoneComponent
+              topic={topic}
+              setTopic={setTopic}
+              numberOfQuestions={numberOfQuestions}
+              setNumberOfQuestions={setNumberOfQuestions}
+              quiz={quiz}
+              currentQuestionIndex={currentQuestionIndex}
+              setCurrentQuestionIndex={setCurrentQuestionIndex}
+              score={score}
+              setScore={setScore}
+              loading={loading}
+              setLoading={setLoading}
+              error={error}
+              setError={setError}
+              openModal={openModal}
+              closeModal={closeModal}
+              modalOpen={modalOpen}
+              quizFinished={quizFinished}
+              setQuizFinished={setQuizFinished}
+            />
       <MileQuizViewModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
