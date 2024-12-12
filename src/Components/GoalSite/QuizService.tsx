@@ -7,7 +7,7 @@ export const generateQuiz = async (
   data: GenerateQuizRequest
 ): Promise<QuizQuestionType[]> => {
   try {
-    //SENDE TIL DATABASEN? ? ? ? ?
+    //SENDE TIL DATABASEN? Fix prompt i backend! ? ? ? ?
     //? ? ? ? ?
     //????
     const response = await axios.post(`${API_URL}/generate`, data);
@@ -17,7 +17,7 @@ export const generateQuiz = async (
 
     // Parse the JSON string into an object
     const quizQuestions: QuizQuestionType[] = JSON.parse(quizRawContent);
-    console.log(quizQuestions);
+
     sendToDB(quizQuestions);
     return quizQuestions;
   } catch (error: any) {

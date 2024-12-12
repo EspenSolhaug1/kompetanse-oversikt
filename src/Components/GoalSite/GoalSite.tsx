@@ -17,21 +17,16 @@ const GoalSite: React.FC = () => {
   //const [goal, setGoal] = useState<GoalType | undefined>(undefined);
   const [score, setScore] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
-  const [quizFinished, setQuizFinished] = useState<boolean>(false);
+  const [loadGoal, setLoadGoal] = useState<boolean>(true);
+  //const [quizFinished, setQuizFinished] = useState<boolean>(false);
   const [theGoal, setTheGoal] = useState<GoalType | undefined>(undefined);
   const [milestoneListObj, setMilestoneListObj] = useState<
     MilestoneType[] | undefined
   >(undefined);
-  const [quizDisplayed, setQuizDisplayed] = useState<
-    QuizQuestionType[] | undefined
-  >([]);
-
-  //Declare modal open state
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchGoal = async () => {
-      setLoading(true);
+      setLoadGoal(true);
       try {
         const response = await axios.get<GoalType>(
           `https://localhost:7293/api/goal/${Number(id)}`
@@ -40,23 +35,13 @@ const GoalSite: React.FC = () => {
       } catch (error) {
         console.error("Failed to fetch user profile:", error);
       }
-      setLoading(false);
+      setLoadGoal(false);
     };
 
     if (userProfile?.goalList) {
       fetchGoal();
     }
   }, [userProfile, id]);
-
-  //Methods for opening and closing the modal
-  const openModal = () => {
-    setModalOpen(true);
-    setQuizFinished(false);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-    // Bruk Set quiz Finished for lagring?
-  };
 
   /*
       if goal: 
@@ -71,19 +56,13 @@ const GoalSite: React.FC = () => {
 
   return (
     <div className="content-background">
-      {loading ? (
+      {loadGoal ? (
         <p>loading</p>
       ) : (
         <>
           <div className="col">
             <h1>{theGoal?.name}</h1>
-            <button
-              onClick={() => {
-                openModal();
-              }}
-            >
-              Ta Quiz
-            </button>
+            <button>Ta Final Quiz</button>
           </div>
           <hr />
           <div className="goalsBox">
@@ -95,17 +74,9 @@ const GoalSite: React.FC = () => {
                   setCurrentQuestionIndex={setCurrentQuestionIndex}
                   score={score}
                   setScore={setScore}
-                  setLoading={setLoading}
                   key={index}
                   index={index}
                   milestone={milestone}
-                  openModal={openModal}
-                  closeModal={closeModal}
-                  modalOpen={modalOpen}
-                  quizFinished={quizFinished}
-                  setQuizFinished={setQuizFinished}
-                  quizDisplayed={quizDisplayed}
-                  setQuizDisplayed={setQuizDisplayed}
                 />
               );
             })}

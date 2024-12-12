@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MilestoneType } from "../../types/MilestoneType";
 import { GenerateQuizRequest, QuizQuestionType } from "../../types/QuizType";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
@@ -8,55 +8,60 @@ const MilestoneComponent = (props: {
   setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
-  openModal: () => void;
-  closeModal: () => void;
-  modalOpen: boolean;
-  quizFinished: boolean;
-  setQuizFinished: React.Dispatch<React.SetStateAction<boolean>>;
   milestone: MilestoneType;
   index: number;
   generateQuiz: (data: GenerateQuizRequest) => Promise<QuizQuestionType[]>;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  quizDisplayed: QuizQuestionType[] | undefined;
-  setQuizDisplayed: React.Dispatch<
-    React.SetStateAction<QuizQuestionType[] | undefined>
-  >;
 }) => {
+  const [quizDisplayed, setQuizDisplayed] = useState<
+    QuizQuestionType[] | undefined
+  >([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  //Declare modal open state
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [quizFinished, setQuizFinished] = useState<boolean>(false);
+  //UseEffect for generating quiz if no quiz is available
+
   useEffect(() => {
-    const generateQuizData = async () => {
-      if (!props.milestone) return;
-
+    const generateQuizData = async ()=> {
+      console.log("useeffect running");
+      setLoading(true);
+      let quizData: QuizQuestionType[] | undefined = [];
       try {
-        // Create a copy of the milestones to avoid mutating props directly
-
-        if (!props.milestone.quizList.find((q) => !q.status)) {
-          const quiz: QuizQuestionType[] = await props.generateQuiz({
+        if (
+          !props.milestone.quizList.find((q) => !q.status) ||
+          props.milestone.quizList.length === 0
+        ) {
+          quizData = await props.generateQuiz({
             topic: props.milestone.title,
             numberOfQuestions: "4",
-            //refresh page (eller loading - Espen 2024)
           });
-
-          //displayedQuiz.current!.questions = quiz;
         } else {
-          //
+          quizData = props.milestone.quizList.find((q) => !q.status)?.questions;
         }
       } catch (err) {
         console.log("Failed to generate quiz. Please try again.");
         console.log(err);
       } finally {
-        props.setLoading(false);
         console.log("loading done");
+        setLoading(false);
       }
+      setQuizDisplayed(quizData);
     };
+    generateQuizData();
+  }, []);
 
-    if (props.milestone.quizList.length === 0) {
-      generateQuizData();
-    }
-    //console.log(props.milestone);
-  }, [props]);
+  //Methods for opening and closing the modal
+  const openModal = () => {
+    setModalOpen(true);
+    setQuizFinished(false);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+    // Bruk Set quiz Finished for lagring?
+  };
 
   const buttonClicked = () => {
-    props.openModal();
+    openModal();
   };
   const hoverColor = props.index % 2 === 0 ? "#606855" : "#4b8176";
 
@@ -73,23 +78,21 @@ const MilestoneComponent = (props: {
     >
       <h2>{props.milestone.title}</h2>
       <h3>{props.milestone.description}</h3>
-      {props.milestone.quizList.length != 0 ? (
-        <MileQuizViewModal
-          isOpen={props.modalOpen}
-          onClose={() => props.closeModal()}
-          data={props.quizDisplayed}
-          closeModal={props.closeModal}
-          currentQuestionIndex={props.currentQuestionIndex}
-          setCurrentQuestionIndex={props.setCurrentQuestionIndex}
-          score={props.score}
-          setScore={props.setScore}
-          quizFinished={props.quizFinished}
-          setQuizFinished={props.setQuizFinished}
-          setQuizDisplayed={props.setQuizDisplayed}
-          milestone={props.milestone}
-        />
-      ) : (
-        <h2>Loading</h2>
+      {!loading && (
+        <>
+          <MileQuizViewModal
+            isOpen={modalOpen}
+            onClose={() => closeModal()}
+            data={quizDisplayed}
+            closeModal={closeModal}
+            currentQuestionIndex={props.currentQuestionIndex}
+            setCurrentQuestionIndex={props.setCurrentQuestionIndex}
+            score={props.score}
+            setScore={props.setScore}
+            quizFinished={quizFinished}
+            setQuizFinished={setQuizFinished}
+          />
+        </>
       )}
       <button onClick={buttonClicked}>Ta miniquiz</button>
     </div>

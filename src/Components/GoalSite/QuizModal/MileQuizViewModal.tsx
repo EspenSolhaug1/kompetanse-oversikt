@@ -1,7 +1,6 @@
 import Modal from "react-modal";
 import "../Milestone.css";
 import { QuizQuestionType } from "../../../types/QuizType";
-import { MilestoneType } from "../../../types/MilestoneType";
 
 const MileQuizViewModal = (props: {
   data: QuizQuestionType[] | undefined;
@@ -14,15 +13,12 @@ const MileQuizViewModal = (props: {
   setScore: React.Dispatch<React.SetStateAction<number>>;
   quizFinished: boolean;
   setQuizFinished: React.Dispatch<React.SetStateAction<boolean>>;
-  setQuizDisplayed: React.Dispatch<
-    React.SetStateAction<QuizQuestionType[] | undefined>
-  >;
-  milestone: MilestoneType;
 }) => {
+  const quizData = props.data || [];
   // Type guard function
 
   const handleOptionClick = (selectedOption: number) => {
-    const currentQuestion = props.data?.[props.currentQuestionIndex];
+    const currentQuestion = quizData[props.currentQuestionIndex];
 
     // Check if the selected option is correct and update the score
     if (selectedOption === currentQuestion?.answer) {
@@ -30,8 +26,8 @@ const MileQuizViewModal = (props: {
     }
 
     // Move to the next question or show the results if it's the last question
-    if (props.data) {
-      if (props.currentQuestionIndex + 1 < props.data.length) {
+    if (quizData.length != 0) {
+      if (props.currentQuestionIndex + 1 < quizData.length) {
         props.setCurrentQuestionIndex((prev) => prev + 1);
       } else {
         props.setQuizFinished(true);
@@ -44,12 +40,6 @@ const MileQuizViewModal = (props: {
       }
     }
   };
-  if (props.milestone) {
-    props.setQuizDisplayed(
-      props.milestone.quizList.find((q) => !q.status)?.questions
-    );
-  }
-  console.log(props.data);
 
   return (
     <Modal
@@ -63,11 +53,11 @@ const MileQuizViewModal = (props: {
           <button onClick={props.closeModal}>x</button>
           <div>
             <h2>
-              Question {props.currentQuestionIndex + 1} of {props.data?.length}
+              Question {props.currentQuestionIndex + 1} of {quizData.length}
             </h2>
-            <p>{props.data?.[props.currentQuestionIndex].content}</p>
+            <p>{quizData[props.currentQuestionIndex].content}</p>
             <div>
-              {props.data?.[props.currentQuestionIndex]?.options.map(
+              {quizData[props.currentQuestionIndex]?.options.map(
                 (option, index) => (
                   <button
                     key={index}

@@ -22,7 +22,7 @@ const AddMilestoneComponent = (props: {
     try {
       props.setLoading(true);
       const response = await fetch(
-        `https://localhost:7293/api/milestone/goal/${1}`,
+        `https://localhost:7293/api/milestone/goal/${2}`,
         {
           method: "POST",
           headers: {
