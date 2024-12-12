@@ -31,6 +31,7 @@ const GoalSite: React.FC = () => {
 
   useEffect(() => {
     const fetchGoal = async () => {
+      setLoading(true);
       try {
         const response = await axios.get<GoalType>(
           `https://localhost:7293/api/goal/${Number(id)}`
@@ -39,6 +40,7 @@ const GoalSite: React.FC = () => {
       } catch (error) {
         console.error("Failed to fetch user profile:", error);
       }
+      setLoading(false);
     };
 
     if (userProfile?.goalList) {
@@ -69,46 +71,52 @@ const GoalSite: React.FC = () => {
 
   return (
     <div className="content-background">
-      <div className="col">
-        <h1>{theGoal?.name}</h1>
-        <button
-          onClick={() => {
-            openModal();
-          }}
-        >
-          Ta Quiz
-        </button>
-      </div>
-      <hr />
-      <div className="goalsBox">
-        {milestoneListObj?.map((milestone, index) => {
-          return (
-            <MilestoneComponent
-              currentQuestionIndex={currentQuestionIndex}
-              generateQuiz={generateQuiz}
-              setCurrentQuestionIndex={setCurrentQuestionIndex}
-              score={score}
-              setScore={setScore}
-              setLoading={setLoading}
-              key={index}
-              index={index}
-              milestone={milestone}
-              openModal={openModal}
-              closeModal={closeModal}
-              modalOpen={modalOpen}
-              quizFinished={quizFinished}
-              setQuizFinished={setQuizFinished}
-              quizDisplayed={quizDisplayed}
-              setQuizDisplayed={setQuizDisplayed}
-            />
-          );
-        })}
-      </div>
-      <AddMilestoneComponent
-        setLoading={setLoading}
-        loading={loading}
-        index={2}
-      />
+      {loading ? (
+        <p>loading</p>
+      ) : (
+        <>
+          <div className="col">
+            <h1>{theGoal?.name}</h1>
+            <button
+              onClick={() => {
+                openModal();
+              }}
+            >
+              Ta Quiz
+            </button>
+          </div>
+          <hr />
+          <div className="goalsBox">
+            {milestoneListObj?.map((milestone, index) => {
+              return (
+                <MilestoneComponent
+                  currentQuestionIndex={currentQuestionIndex}
+                  generateQuiz={generateQuiz}
+                  setCurrentQuestionIndex={setCurrentQuestionIndex}
+                  score={score}
+                  setScore={setScore}
+                  setLoading={setLoading}
+                  key={index}
+                  index={index}
+                  milestone={milestone}
+                  openModal={openModal}
+                  closeModal={closeModal}
+                  modalOpen={modalOpen}
+                  quizFinished={quizFinished}
+                  setQuizFinished={setQuizFinished}
+                  quizDisplayed={quizDisplayed}
+                  setQuizDisplayed={setQuizDisplayed}
+                />
+              );
+            })}
+          </div>
+          <AddMilestoneComponent
+            setLoading={setLoading}
+            loading={loading}
+            index={2}
+          />
+        </>
+      )}
     </div>
   );
 };
