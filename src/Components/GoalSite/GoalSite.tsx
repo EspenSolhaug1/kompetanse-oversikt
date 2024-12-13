@@ -13,7 +13,7 @@ import AddMilestoneComponent from "./AddMilestoneComponent";
 const GoalSite: React.FC = () => {
   const { id } = useParams();
   const { userProfile } = useContext(myContext) as myContextType;
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+
   //const [goal, setGoal] = useState<GoalType | undefined>(undefined);
   const [score, setScore] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
@@ -69,9 +69,7 @@ const GoalSite: React.FC = () => {
             {milestoneListObj?.map((milestone, index) => {
               return (
                 <MilestoneComponent
-                  currentQuestionIndex={currentQuestionIndex}
                   generateQuiz={generateQuiz}
-                  setCurrentQuestionIndex={setCurrentQuestionIndex}
                   score={score}
                   setScore={setScore}
                   key={index}
