@@ -4,8 +4,6 @@ import { GenerateQuizRequest, QuizQuestionType } from "../../types/QuizType";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
 
 const MilestoneComponent = (props: {
-  score: number;
-  setScore: React.Dispatch<React.SetStateAction<number>>;
   milestone: MilestoneType;
   index: number;
   generateQuiz: (data: GenerateQuizRequest) => Promise<QuizQuestionType[]>;
@@ -17,7 +15,12 @@ const MilestoneComponent = (props: {
   const [loading, setLoading] = useState<boolean>(true);
   //Declare modal open state
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  //Check if quiz is passed
+  const [mileQuizPassed, setMileQuizPassed] = useState<boolean>(false);
+  //Check if quiz is finished
   const [quizFinished, setQuizFinished] = useState<boolean>(false);
+  //Score for each milestone
+  const [score, setScore] = useState<number>(1);
   //UseEffect for generating quiz if no quiz is available
 
   useEffect(() => {
@@ -26,17 +29,23 @@ const MilestoneComponent = (props: {
       setLoading(true);
       let quizData: QuizQuestionType[] | undefined = [];
       try {
-        if (
-          !props.milestone.quizList.find((q) => !q.status) ||
-          props.milestone.quizList.length === 0
-        ) {
-          quizData = await props.generateQuiz({
-            topic: props.milestone.title,
-            numberOfQuestions: "4",
-            id: props.milestone.id,
-          });
+        if (props.milestone.quizList.find((q) => q.status && q.score >= 3)) {
+          setMileQuizPassed(true);
         } else {
-          quizData = props.milestone.quizList.find((q) => !q.status)?.questions;
+          if (
+            !props.milestone.quizList.find((q) => !q.status) ||
+            props.milestone.quizList.length === 0
+          ) {
+            quizData = await props.generateQuiz({
+              topic: props.milestone.title,
+              numberOfQuestions: "4",
+              id: props.milestone.id,
+            });
+          } else {
+            quizData = props.milestone.quizList.find(
+              (q) => !q.status
+            )?.questions;
+          }
         }
       } catch (err) {
         console.log("Failed to generate quiz. Please try again.");
@@ -53,7 +62,6 @@ const MilestoneComponent = (props: {
   //Methods for opening and closing the modal
   const openModal = () => {
     setModalOpen(true);
-    setQuizFinished(false);
   };
   const closeModal = () => {
     setModalOpen(false);
@@ -87,14 +95,20 @@ const MilestoneComponent = (props: {
             closeModal={closeModal}
             currentQuestionIndex={currentQuestionIndex}
             setCurrentQuestionIndex={setCurrentQuestionIndex}
-            score={props.score}
-            setScore={props.setScore}
+            score={score}
+            setScore={setScore}
             quizFinished={quizFinished}
             setQuizFinished={setQuizFinished}
+            mileQuizPassed={mileQuizPassed}
+            setMileQuizPassed={setMileQuizPassed}
           />
         </>
       )}
-      <button onClick={buttonClicked}>Ta miniquiz</button>
+      {!mileQuizPassed ? (
+        <button onClick={buttonClicked}>Ta miniquiz</button>
+      ) : (
+        <p>Quiz Passed!</p>
+      )}
     </div>
   );
 };

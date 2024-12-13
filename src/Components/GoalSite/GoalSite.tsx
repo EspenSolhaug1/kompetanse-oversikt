@@ -7,15 +7,13 @@ import "../../App.css";
 import { generateQuiz } from "./QuizService";
 import axios from "axios";
 import { MilestoneType } from "../../types/MilestoneType";
-import { QuizQuestionType } from "../../types/QuizType";
 import AddMilestoneComponent from "./AddMilestoneComponent";
 
 const GoalSite: React.FC = () => {
   const { id } = useParams();
   const { userProfile } = useContext(myContext) as myContextType;
-
   //const [goal, setGoal] = useState<GoalType | undefined>(undefined);
-  const [score, setScore] = useState<number>(0);
+  const [score, setScore] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [loadGoal, setLoadGoal] = useState<boolean>(true);
   //const [quizFinished, setQuizFinished] = useState<boolean>(false);
@@ -23,6 +21,7 @@ const GoalSite: React.FC = () => {
   const [milestoneListObj, setMilestoneListObj] = useState<
     MilestoneType[] | undefined
   >(undefined);
+
 
   useEffect(() => {
     const fetchGoal = async () => {
@@ -33,7 +32,7 @@ const GoalSite: React.FC = () => {
         );
         setTheGoal(response.data);
       } catch (error) {
-        console.error("Failed to fetch user profile:", error);
+        console.error("Failed to fetch user goal:", error);
       }
       setLoadGoal(false);
     };
@@ -70,8 +69,6 @@ const GoalSite: React.FC = () => {
               return (
                 <MilestoneComponent
                   generateQuiz={generateQuiz}
-                  score={score}
-                  setScore={setScore}
                   key={index}
                   index={index}
                   milestone={milestone}

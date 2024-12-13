@@ -15,7 +15,7 @@ const AddMilestoneComponent = (props: {
 
     const milestone = {
       title: milestoneTitle,
-      description: "This is a new milestone", // Adjust as needed
+      description: "This is a new milestone",
       status: true,
     };
 
