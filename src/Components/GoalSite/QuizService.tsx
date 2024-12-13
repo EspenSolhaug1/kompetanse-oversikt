@@ -1,16 +1,17 @@
 import axios from "axios";
-import { GenerateQuizRequest, QuizQuestionType } from "../../types/QuizType";
+import {
+  GenerateQuizRequest,
+  MileQuizType,
+  QuizQuestionType,
+} from "../../types/QuizType";
 
-const API_URL = "https://localhost:7293/api/Quiz";
+const API_URL = "https://localhost:7293/api";
 
 export const generateQuiz = async (
   data: GenerateQuizRequest
 ): Promise<QuizQuestionType[]> => {
   try {
-    //SENDE TIL DATABASEN? Fix prompt i backend! ? ? ? ?
-    //? ? ? ? ?
-    //????
-    const response = await axios.post(`${API_URL}/generate`, data);
+    const response = await axios.post(`${API_URL}/Quiz/generate`, data);
 
     // Extract the quiz content
     const quizRawContent = response.data.choices[0].message.content;
@@ -18,7 +19,7 @@ export const generateQuiz = async (
     // Parse the JSON string into an object
     const quizQuestions: QuizQuestionType[] = JSON.parse(quizRawContent);
 
-    sendToDB(quizQuestions);
+    sendToDB(quizQuestions, data.id);
     return quizQuestions;
   } catch (error: any) {
     console.error(
@@ -29,6 +30,23 @@ export const generateQuiz = async (
   }
 };
 
-const sendToDB = (quiz: QuizQuestionType[]) => {
+const sendToDB = async (quiz: QuizQuestionType[], id: number) => {
   // Post quiz to db
+  let response;
+  console.log(id);
+  const paraToAxios = {
+    score: 0,
+    status: false,
+    questions: quiz,
+  };
+  console.log(paraToAxios);
+  try {
+    response = await axios.post(
+      `${API_URL}/quizq/milestone/${id}`,
+      paraToAxios
+    );
+  } catch (error: any) {
+    console.error(error.message);
+  }
+  console.log(response);
 };

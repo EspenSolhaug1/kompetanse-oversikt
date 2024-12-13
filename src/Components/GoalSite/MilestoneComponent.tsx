@@ -39,6 +39,7 @@ const MilestoneComponent = (props: {
             quizData = await props.generateQuiz({
               topic: props.milestone.title,
               numberOfQuestions: "4",
+              id: props.milestone.id,
             });
           } else {
             quizData = props.milestone.quizList.find(

@@ -14,6 +14,7 @@ export interface QuizQuestionType {
 export interface GenerateQuizRequest {
   topic: string;
   numberOfQuestions: string;
+  id: number;
 }
 
 export interface GenerateQuizResponse {
