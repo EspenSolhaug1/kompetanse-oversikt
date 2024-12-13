@@ -15,7 +15,7 @@ const AddMilestoneComponent = (props: {
 
     const milestone = {
       title: milestoneTitle,
-      description: "This is a new milestone", // Adjust as needed
+      description: "This is a new milestone",
       status: true,
     };
 
@@ -36,8 +36,7 @@ const AddMilestoneComponent = (props: {
         throw new Error("Failed to add milestone. Please try again.");
       }
 
-      alert("Milestone added successfully!");
-      console.log(await response.json());
+      window.location.reload();
     } catch (error: any) {
       console.error(error.message);
       alert("Error: " + error.message);

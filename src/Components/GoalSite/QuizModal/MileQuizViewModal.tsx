@@ -13,16 +13,18 @@ const MileQuizViewModal = (props: {
   setScore: React.Dispatch<React.SetStateAction<number>>;
   quizFinished: boolean;
   setQuizFinished: React.Dispatch<React.SetStateAction<boolean>>;
+  mileQuizPassed: boolean;
+  setMileQuizPassed: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const quizData = props.data || [];
   // Type guard function
 
   const handleOptionClick = (selectedOption: number) => {
     const currentQuestion = quizData[props.currentQuestionIndex];
-
     // Check if the selected option is correct and update the score
     if (selectedOption === currentQuestion?.answer) {
       props.setScore((prev) => prev + 1);
+      console.log("current score: " + props.score);
     }
 
     // Move to the next question or show the results if it's the last question
@@ -31,12 +33,21 @@ const MileQuizViewModal = (props: {
         props.setCurrentQuestionIndex((prev) => prev + 1);
       } else {
         props.setQuizFinished(true);
-        /*
-      const passed: boolean =
-        props.score / props.currentQuestionIndex + 1 > 0.8;
-        */
-        // props.setShowResults(true);
-        // TODO: QUIZ-FINISHED(bool)
+        if (props.score / (props.currentQuestionIndex + 1) >= 0.75) {
+          props.setMileQuizPassed(true);
+          console.log(props.score);
+          console.log("Quiz passed!!!!!!");
+          console.log(props.score / (props.currentQuestionIndex + 1));
+          props.setScore(0);
+        } else {
+          props.setMileQuizPassed(false);
+          props.setScore(0);
+          console.log(props.score);
+          console.log("Quiz faled");
+          console.log(props.score / (props.currentQuestionIndex + 1));
+        }
+        //UPDATE DATABASEN
+        console.log("Final score" + props.score);
       }
     }
   };
