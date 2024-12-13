@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { myContext, myContextType } from "../../App";
 import GoalInstanceProfile from "./GoalInstanceProfileComponent";
 import "./GoalListComponent.css";
+import AddGoalComponent from "../Profile/AddGoalComponent";
 
 const GoalListProfileComponent = () => {
   const { userProfile } = useContext(myContext) as myContextType;
@@ -12,6 +13,7 @@ const GoalListProfileComponent = () => {
         {userProfile?.goalList.map((goal, index) => {
           return <GoalInstanceProfile key={index} goal={goal} index={index} />;
         })}
+        <AddGoalComponent />
       </div>
     </div>
   );
