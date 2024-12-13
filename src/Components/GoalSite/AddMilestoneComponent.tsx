@@ -22,7 +22,7 @@ const AddMilestoneComponent = (props: {
     try {
       props.setLoading(true);
       const response = await fetch(
-        `https://localhost:7293/api/milestone/goal/${2}`,
+        `https://localhost:7293/api/milestone/goal/${3}`,
         {
           method: "POST",
           headers: {
@@ -36,8 +36,7 @@ const AddMilestoneComponent = (props: {
         throw new Error("Failed to add milestone. Please try again.");
       }
 
-      alert("Milestone added successfully!");
-      console.log(await response.json());
+      window.location.reload();
     } catch (error: any) {
       console.error(error.message);
       alert("Error: " + error.message);

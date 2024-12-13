@@ -4,8 +4,6 @@ import { GenerateQuizRequest, QuizQuestionType } from "../../types/QuizType";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
 
 const MilestoneComponent = (props: {
-  currentQuestionIndex: number;
-  setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
   milestone: MilestoneType;
@@ -15,6 +13,7 @@ const MilestoneComponent = (props: {
   const [quizDisplayed, setQuizDisplayed] = useState<
     QuizQuestionType[] | undefined
   >([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   //Declare modal open state
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -22,7 +21,7 @@ const MilestoneComponent = (props: {
   //UseEffect for generating quiz if no quiz is available
 
   useEffect(() => {
-    const generateQuizData = async ()=> {
+    const generateQuizData = async () => {
       console.log("useeffect running");
       setLoading(true);
       let quizData: QuizQuestionType[] | undefined = [];
@@ -34,6 +33,7 @@ const MilestoneComponent = (props: {
           quizData = await props.generateQuiz({
             topic: props.milestone.title,
             numberOfQuestions: "4",
+            id: props.milestone.id,
           });
         } else {
           quizData = props.milestone.quizList.find((q) => !q.status)?.questions;
@@ -85,8 +85,8 @@ const MilestoneComponent = (props: {
             onClose={() => closeModal()}
             data={quizDisplayed}
             closeModal={closeModal}
-            currentQuestionIndex={props.currentQuestionIndex}
-            setCurrentQuestionIndex={props.setCurrentQuestionIndex}
+            currentQuestionIndex={currentQuestionIndex}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
             score={props.score}
             setScore={props.setScore}
             quizFinished={quizFinished}
