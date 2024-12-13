@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import "../Milestone.css";
-import { QuizQuestionType } from "../../../types/QuizType";
+import { QuizQuestionType, UpdateQuizRequest } from "../../../types/QuizType";
+import axios from "axios";
 
 const MileQuizViewModal = (props: {
   data: QuizQuestionType[] | undefined;
@@ -15,6 +16,7 @@ const MileQuizViewModal = (props: {
   setQuizFinished: React.Dispatch<React.SetStateAction<boolean>>;
   mileQuizPassed: boolean;
   setMileQuizPassed: React.Dispatch<React.SetStateAction<boolean>>;
+  quizId: number | undefined;
 }) => {
   const quizData = props.data || [];
   // Type guard function
@@ -34,21 +36,41 @@ const MileQuizViewModal = (props: {
       } else {
         props.setQuizFinished(true);
         if (props.score / (props.currentQuestionIndex + 1) >= 0.75) {
+          updateQuiz({
+            score: props.score,
+            status: true,
+          });
           props.setMileQuizPassed(true);
-          console.log(props.score);
-          console.log("Quiz passed!!!!!!");
-          console.log(props.score / (props.currentQuestionIndex + 1));
-          props.setScore(0);
+          props.setScore(1);
         } else {
           props.setMileQuizPassed(false);
-          props.setScore(0);
-          console.log(props.score);
-          console.log("Quiz faled");
-          console.log(props.score / (props.currentQuestionIndex + 1));
+          props.setScore(1);
         }
-        //UPDATE DATABASEN
         console.log("Final score" + props.score);
       }
+    }
+  };
+
+  const updateQuiz = async (data: UpdateQuizRequest) => {
+    try {
+      const response = await fetch(
+        `https://localhost:7293/api/quizq/${props.quizId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (response.ok) {
+        console.log("quiz updated successfully: ", props.quizId);
+      } else {
+        console.error("Failed to update quiz", response);
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 

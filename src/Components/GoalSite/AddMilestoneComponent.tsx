@@ -2,6 +2,7 @@ const AddMilestoneComponent = (props: {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   index: number;
+  goalId: number | undefined;
 }) => {
   const buttonClicked = async () => {
     const milestoneTitle = (
@@ -22,7 +23,7 @@ const AddMilestoneComponent = (props: {
     try {
       props.setLoading(true);
       const response = await fetch(
-        `https://localhost:7293/api/milestone/goal/${3}`,
+        `https://localhost:7293/api/milestone/goal/${props.goalId}`,
         {
           method: "POST",
           headers: {

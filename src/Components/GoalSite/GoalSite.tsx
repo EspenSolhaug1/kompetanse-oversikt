@@ -80,6 +80,7 @@ const GoalSite: React.FC = () => {
             setLoading={setLoading}
             loading={loading}
             index={2}
+            goalId={id}
           />
         </>
       )}
