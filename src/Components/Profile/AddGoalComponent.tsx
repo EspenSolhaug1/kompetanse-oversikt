@@ -1,54 +1,71 @@
 import axios from "axios";
-import { ChangeEvent, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { myContext } from "../../App";
 
 const API_URL = "https://localhost:7293/api";
 
 const AddGoalComponent = () => {
   const [goalName, setGoalName] = useState("");
+  const [difficulty, setDifficulty] = useState(0); // Default difficulty (0)
   const profileId = useContext(myContext).userProfile?.id;
 
-  const handleChange = (e: React.FormEvent) => {
-    e.preventDefault();
-    const value = e.target;
-    console.log(value);
-    //setGoalName(value);
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGoalName(e.target.value);
+  };
 
-    /**
-     *
-     * FIX THIS 16. dec 2024
-     * VALUE & HANDLECHANGE NEEDS WORK
-     *
-     */
+  const handleDifficultyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setDifficulty(Number(e.target.value)); // Convert value to a number
   };
 
   const handleSubmit = async (param: React.FormEvent<HTMLFormElement>) => {
     param.preventDefault();
-    console.log(param);
-    //await axios.post(`${API_URL}/goal/profile/${props.profileId}`, param);
+
+    if (!profileId) {
+      console.error("Profile ID is missing.");
+      return;
+    }
+
+    try {
+      await axios.post(`${API_URL}/goal/profile/${profileId}`, {
+        name: goalName,
+        difficulty, // Correct payload keys
+      });
+      setGoalName(""); // Clear the input field after submission
+      setDifficulty(0); // Reset difficulty to default
+    } catch (error) {
+      console.error("Error submitting goal:", error);
+    }
   };
 
   return (
     <div className="addGoalContainer">
-      <div>
-        <form onSubmit={handleSubmit} className="add-goal-form">
-          <input
-            name="goalName"
-            type="text"
-            required
-            placeholder="Add a Goal"
-            onChange={(e) => handleChange(e)}
-            value={goalName}
-          />
-          <button
-            className="add-user-button"
-            type="submit"
-            disabled={goalName == ""}
-          >
-            ✅
-          </button>
-        </form>
-      </div>
+      <form onSubmit={handleSubmit} className="add-goal-form">
+        <input
+          name="goalName"
+          type="text"
+          required
+          placeholder="Add a Goal"
+          onChange={handleNameChange}
+          value={goalName}
+        />
+        <select
+          name="difficulty"
+          value={difficulty}
+          onChange={handleDifficultyChange}
+          required
+        >
+          <option value={0}>1 - Easy</option>
+          <option value={1}>2 - Medium</option>
+          <option value={2}>3 - Hard</option>
+        </select>
+        <button
+          className="add-user-button"
+          type="submit"
+          disabled={goalName === ""}
+        >
+          ✅
+        </button>
+      </form>
     </div>
   );
 };

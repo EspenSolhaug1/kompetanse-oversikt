@@ -24,7 +24,9 @@ const GoalInstanceProfile = (props: { goal: GoalType; index: number }) => {
     >
       <div className="hover">
         <span className="goalTitle">{props.goal.name}</span>
-        <span className="difficulty">{"⭐".repeat(props.goal.difficulty)}</span>
+        <span className="difficulty">
+          {"⭐".repeat(props.goal.difficulty + 1)}
+        </span>
       </div>
     </div>
   );
