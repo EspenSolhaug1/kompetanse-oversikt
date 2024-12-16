@@ -1,9 +1,5 @@
 import axios from "axios";
-import {
-  GenerateQuizRequest,
-  MileQuizType,
-  QuizQuestionType,
-} from "../../types/QuizType";
+import { GenerateQuizRequest, QuizQuestionType } from "../../types/QuizType";
 
 const API_URL = "https://localhost:7293/api";
 

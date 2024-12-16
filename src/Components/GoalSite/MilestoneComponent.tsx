@@ -21,6 +21,8 @@ const MilestoneComponent = (props: {
   const [quizFinished, setQuizFinished] = useState<boolean>(false);
   //Score for each milestone
   const [score, setScore] = useState<number>(1);
+  //Get the id for the quiz
+  const [quizId, setQuizId] = useState<number | undefined>(undefined);
   //UseEffect for generating quiz if no quiz is available
 
   useEffect(() => {
@@ -28,24 +30,25 @@ const MilestoneComponent = (props: {
       console.log("useeffect running");
       setLoading(true);
       let quizData: QuizQuestionType[] | undefined = [];
+      if (!props.milestone.quizList.some((q) => !q.status)) {
+        console.log("RUNNING generated");
+      }
       try {
-        if (props.milestone.quizList.find((q) => q.status && q.score >= 3)) {
+        if (props.milestone.quizList.some((q) => q.status && q.score >= 3)) {
           setMileQuizPassed(true);
+        }
+        if (
+          !props.milestone.quizList.some((q) => !q.status) ||
+          props.milestone.quizList.length === 0
+        ) {
+          quizData = await props.generateQuiz({
+            topic: props.milestone.title,
+            numberOfQuestions: "4",
+            id: props.milestone.id,
+          });
         } else {
-          if (
-            !props.milestone.quizList.find((q) => !q.status) ||
-            props.milestone.quizList.length === 0
-          ) {
-            quizData = await props.generateQuiz({
-              topic: props.milestone.title,
-              numberOfQuestions: "4",
-              id: props.milestone.id,
-            });
-          } else {
-            quizData = props.milestone.quizList.find(
-              (q) => !q.status
-            )?.questions;
-          }
+          quizData = props.milestone.quizList.find((q) => !q.status)?.questions;
+          setQuizId(props.milestone.quizList.find((q) => !q.status)?.id);
         }
       } catch (err) {
         console.log("Failed to generate quiz. Please try again.");
@@ -101,13 +104,19 @@ const MilestoneComponent = (props: {
             setQuizFinished={setQuizFinished}
             mileQuizPassed={mileQuizPassed}
             setMileQuizPassed={setMileQuizPassed}
+            quizId={quizId}
           />
+          {!mileQuizPassed ? (
+            <>
+              {score > 1 && (
+                <p className="quiz-fail-msg">Quiz failed, try again</p>
+              )}
+              <button onClick={buttonClicked}>Ta miniquiz</button>
+            </>
+          ) : (
+            <p className="quiz-passed-msg">Quiz Passed!</p>
+          )}
         </>
-      )}
-      {!mileQuizPassed ? (
-        <button onClick={buttonClicked}>Ta miniquiz</button>
-      ) : (
-        <p>Quiz Passed!</p>
       )}
     </div>
   );
