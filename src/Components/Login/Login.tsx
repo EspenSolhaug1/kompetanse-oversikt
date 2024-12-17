@@ -74,37 +74,39 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-intro">
-        {/* <p>Bilde...</p> */}
-       
-      </div>
-      <form onSubmit={handleSubmit}>
+    <div className="formWrapper">
+      <div className="login-page">
+        <div className="login-intro">
+          {/* <p>Bilde...</p> */}
         
-        <div className="login-form">
-           <h1 className="loginTitle">Vennligst logg inn</h1>
-          <label htmlFor="epost">Epost: </label>
-          <input
-            type="text"
-            id="first"
-            name="first"
-            onChange={handleChange}
-            value={email}
-            placeholder="someone@gmail.com"
-            required
-          />
-          <label htmlFor="password">Passord: </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="password"
-            required
-          />
-                {errorBool && <h3 className="errorMessage">{errorMessage}</h3>}
-          <input type="submit" value="Logg inn!" className="btn-submit"/>
         </div>
-      </form>
+        <form onSubmit={handleSubmit}>
+          
+          <div className="login-form">
+            <h1 className="loginTitle">Vennligst logg inn</h1>
+            <label htmlFor="epost">Epost: </label>
+            <input
+              type="text"
+              id="first"
+              name="first"
+              onChange={handleChange}
+              value={email}
+              placeholder="someone@gmail.com"
+              required
+            />
+            <label htmlFor="password">Passord: </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="password"
+              required
+            />
+                  {errorBool && <h3 className="errorMessage">{errorMessage}</h3>}
+            <input type="submit" value="Logg inn!" className="btn-submit"/>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

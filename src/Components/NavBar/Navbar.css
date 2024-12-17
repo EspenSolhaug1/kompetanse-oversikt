@@ -100,3 +100,15 @@
 .logout-button:hover {
   background-color: #bd2130;
 }
+
+.logoutBtn{
+  background: none;
+  /* width: 20px; */
+  /* border: solid black 1px; */
+}
+
+.logoutBtn:hover {
+  background: none;
+  /* width: 20px; */
+  color: #bd2130;
+}
