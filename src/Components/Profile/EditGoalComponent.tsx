@@ -57,7 +57,7 @@ const EditGoalComponent = ({
         <option value={1}>2 - Medium</option>
         <option value={2}>3 - Hard</option>
       </select>
-      <button type="submit">Save</button>
+      <button type="submit">Lagre</button>
       <button type="button" onClick={onCancel}>
         Cancel
       </button>

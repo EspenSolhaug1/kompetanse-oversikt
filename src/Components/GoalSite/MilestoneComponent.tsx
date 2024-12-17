@@ -17,6 +17,8 @@ const MilestoneComponent = (props: {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   //Check if quiz is passed
   const [mileQuizPassed, setMileQuizPassed] = useState<boolean>(false);
+  //Display passed score:
+  const [displayScore, setDisplayScore] = useState<number>(0);
   //Check if quiz is finished
   const [quizFinished, setQuizFinished] = useState<boolean>(false);
   //Score for each milestone
@@ -38,6 +40,12 @@ const MilestoneComponent = (props: {
       try {
         if (props.milestone.quizList.some((q) => q.status && q.score >= 3)) {
           setMileQuizPassed(true);
+          const foundQuiz = props.milestone.quizList.find(
+            (q) => q.status && q.score >= 3
+          );
+          if (foundQuiz) {
+            setDisplayScore(foundQuiz.score);
+          }
         }
         if (
           !props.milestone.quizList.some((q) => !q.status) ||
@@ -110,16 +118,21 @@ const MilestoneComponent = (props: {
             setMileQuizPassed={setMileQuizPassed}
             quizId={quizId}
             setFailedAttempt={setFailedAttempt}
+            setDisplayScore={setDisplayScore}
+            displayScore={displayScore}
           />
           {!mileQuizPassed ? (
             <>
               {failedAttempt && (
-                <p className="quiz-fail-msg">Quiz failed, try again</p>
+                <p className="quiz-fail-msg">Quiz strøket, prøv igjen</p>
               )}
-              <button onClick={buttonClicked}>Ta miniquiz</button>
+              <button onClick={buttonClicked}>Ta quiz</button>
             </>
           ) : (
-            <p className="quiz-passed-msg">Quiz Passed!</p>
+            <>
+              <p className="quiz-passed-msg">Quiz bestått!</p>
+              <p>Din score: {displayScore}</p>
+            </>
           )}
         </>
       )}
