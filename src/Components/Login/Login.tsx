@@ -4,6 +4,7 @@ import { UserLoginType } from "../../types/UserLoginType";
 import { useNavigate } from "react-router-dom";
 import { MockLoginData } from "../../ApiData/MockData";
 import { UserType } from "../../types/UserType";
+import "./Login.css"
 import axios from "axios";
 
 const Login = () => {
@@ -75,12 +76,13 @@ const Login = () => {
   return (
     <div className="login-page">
       <div className="login-intro">
-        <p>Bilde...</p>
-        <h1>Vennligst logg inn</h1>
+        {/* <p>Bilde...</p> */}
+       
       </div>
-      {errorBool && <h3>{errorMessage}</h3>}
       <form onSubmit={handleSubmit}>
+        
         <div className="login-form">
+           <h1 className="loginTitle">Vennligst logg inn</h1>
           <label htmlFor="epost">Epost: </label>
           <input
             type="text"
@@ -88,6 +90,7 @@ const Login = () => {
             name="first"
             onChange={handleChange}
             value={email}
+            placeholder="someone@gmail.com"
           />
           <label htmlFor="password">Passord: </label>
           <input
@@ -96,7 +99,8 @@ const Login = () => {
             name="password"
             placeholder="password"
           />
-          <input type="submit" value="Logg inn!" />
+                {errorBool && <h3 className="errorMessage">{errorMessage}</h3>}
+          <input type="submit" value="Logg inn!" className="btn-submit"/>
         </div>
       </form>
     </div>

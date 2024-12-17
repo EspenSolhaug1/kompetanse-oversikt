@@ -1,0 +1,47 @@
+.login-page{
+    margin: 50px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid black 1px;
+}
+
+.login-intro{
+    display: flex;
+    flex-direction: column;
+    border: solid black 1px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    border: solid black 1px;
+    padding: 30px;
+}
+
+.btn-submit{
+    margin-top: 10px;
+    border-color:  transparent;
+}
+
+.btn-submit:hover{
+    background-color: green;
+}
+
+.errorMessage{
+    margin: 10px;
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    font-weight: 400;
+}
+.loginTitle{
+    color: white;
+    margin-bottom: 40px;
+}
+
+.login-form label{
+    color: white;
+}
+

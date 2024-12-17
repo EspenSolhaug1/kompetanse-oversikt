@@ -37,7 +37,7 @@
 }
 .quiz-passed-msg {
   color: green;
-  font-size: 25px;
+  font-size: 20px;
 }
 .topInfo {
   display: flex;
@@ -68,4 +68,8 @@
   background-color: red;
   padding: 0 15px 0 15px;
   font-size: larger;
+}
+
+.desc {
+  font-size: 1em;
 }
