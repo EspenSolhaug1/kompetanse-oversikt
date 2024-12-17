@@ -13,10 +13,32 @@
   margin-right: auto;
   padding: 0 10vw;
   min-height: calc(100vh - 68px);
+  animation: randomMotion 2s ease-in-out 1 forwards;
 }
 
 @media (max-width: 992px) {
   .content-background {
     width: 100vw;
+  }
+}
+
+.content-background.exit {
+  animation: randomMotionOut 2s ease-in-out 1 forwards;
+}
+
+@keyframes randomMotion {
+  0% {
+    transform: translate(1200px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes randomMotionOut {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(1200px, 0);
   }
 }

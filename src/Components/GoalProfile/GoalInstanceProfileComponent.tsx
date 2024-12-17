@@ -1,10 +1,16 @@
 import "./GoalListComponent.css";
 import { GoalType } from "../../types/GoalType";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { myContext, myContextType } from "../../App";
 
 const GoalInstanceProfile = (props: { goal: GoalType; index: number }) => {
   const navigate = useNavigate();
+  const { handlePageExit } = useContext(myContext) as myContextType;
 
+  const handleButtonClick = () => {
+    handlePageExit(goToGoal);
+  };
   const goToGoal = () => {
     navigate(`/goals/${props.goal.id}`);
   };
@@ -20,7 +26,7 @@ const GoalInstanceProfile = (props: { goal: GoalType; index: number }) => {
           "--hover-color": hoverColor, // Add custom property here
         } as React.CSSProperties
       } // Type assertion to avoid TypeScript errors
-      onClick={goToGoal}
+      onClick={handleButtonClick}
     >
       <div className="hover">
         <span className="goalTitle">{props.goal.name}</span>

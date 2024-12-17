@@ -12,10 +12,14 @@ import { createContext, useState } from "react";
 export interface myContextType {
   userProfile: UserType | null;
   setUserProfile: React.Dispatch<React.SetStateAction<UserType | null>>;
+  isExiting: boolean;
+  handlePageExit: (onLeave: () => void) => void;
 }
 const contextInitialValues = {
   userProfile: null,
   setUserProfile: () => {},
+  isExiting: false,
+  handlePageExit: () => {},
 };
 
 export const myContext = createContext<myContextType>(contextInitialValues);
@@ -23,12 +27,24 @@ export const myContext = createContext<myContextType>(contextInitialValues);
 function App() {
   const [userProfile, setUserProfile] = useState<UserType | null>(null);
 
+  //Exit animation
+  const [isExiting, setIsExiting] = useState(false);
+  const handlePageExit = (onLeave: () => void) => {
+    setIsExiting(true);
+    setTimeout(() => {
+      onLeave();
+      setIsExiting(false);
+    }, 2000);
+  };
+
   return (
     <>
       <myContext.Provider
         value={{
           userProfile,
           setUserProfile,
+          isExiting,
+          handlePageExit,
         }}
       >
         {userProfile ? (

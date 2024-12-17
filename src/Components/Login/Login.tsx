@@ -55,7 +55,7 @@ const Login = () => {
     event.preventDefault();
     if (!users?.find((useritem) => useritem.email === email)) {
       //Confirm there is an error finding username
-      setErrorMessage("Wrong email or password");
+      setErrorMessage("Feil epost eller passord");
       setErrorBool(true);
     } else {
       const theUser = users?.find((useritem) => useritem.email === email);

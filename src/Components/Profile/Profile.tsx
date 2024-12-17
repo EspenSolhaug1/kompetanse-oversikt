@@ -7,7 +7,7 @@ import SkillListProfileComponent from "../SkillProfile/SkillListProfileComponent
 import axios from "axios";
 
 const Profile = () => {
-  const { userProfile, setUserProfile } = useContext(
+  const { userProfile, setUserProfile, isExiting } = useContext(
     myContext
   ) as myContextType;
 
@@ -17,7 +17,7 @@ const Profile = () => {
   const [editedJobTitle, setEditedJobTitle] = useState(
     userProfile?.jobTitle || ""
   );
-
+  
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
   };
@@ -53,7 +53,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="content-background">
+    <div className={`content-background ${isExiting ? "exit" : ""}`}>
       <div className="top-info">
         <div className="d-flex align-items-center justify-content-center position-relative w-100">
           {!isEditing ? (
@@ -66,18 +66,18 @@ const Profile = () => {
               value={editedName}
               onChange={(e) => setEditedName(e.target.value)}
               className="form-control"
-              placeholder="Enter name"
+              placeholder="Skriv navn"
             />
           )}
           <button
             className="btn btn-primary position-absolute end-0"
             onClick={isEditing ? handleSave : handleEditToggle}
           >
-            {isEditing ? "Save" : "Edit"}
+            {isEditing ? "Lagre" : "Endre"}
           </button>
         </div>
-        <hr className="my-2" />
-        <div className="title-and-epost d-flex justify-content-between">
+        <hr className="my-2 text-center" />
+        <div className="title-and-epost d-flex justify-content-between text-center">
           {!isEditing ? (
             <h5 className="m-0">{userProfile?.jobTitle}</h5>
           ) : (
@@ -86,10 +86,9 @@ const Profile = () => {
               value={editedJobTitle}
               onChange={(e) => setEditedJobTitle(e.target.value)}
               className="form-control"
-              placeholder="Enter job title"
+              placeholder="Skriv stillingstittel"
             />
           )}
-          <h5 className="m-0">epost@epost.com</h5>
         </div>
       </div>
 

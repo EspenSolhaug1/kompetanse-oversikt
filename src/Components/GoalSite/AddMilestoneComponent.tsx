@@ -11,7 +11,7 @@ const AddMilestoneComponent = (props: {
     ).value;
 
     if (!milestoneTitle.trim()) {
-      alert("Milestone title cannot be empty!");
+      alert("Tittel må ha innhold!");
       return;
     }
 
@@ -20,7 +20,7 @@ const AddMilestoneComponent = (props: {
     ).value;
 
     if (!milestoneDescription.trim()) {
-      alert("Description title cannot be empty!");
+      alert("Beskrivelsen må ha innhold!");
       return;
     }
 
@@ -63,13 +63,13 @@ const AddMilestoneComponent = (props: {
           <input
             type="text"
             id="milestoneValue"
-            placeholder="Add a Milestone..."
+            placeholder="Legg til milepæl..."
             className="addMilestoneInput"
           />
           <input
             type="text"
             id="milestoneDescription"
-            placeholder="Add description."
+            placeholder="Legg til beskrivelse..."
             className="addMilestoneInput"
           />
         </div>
@@ -78,7 +78,7 @@ const AddMilestoneComponent = (props: {
             buttonClicked();
           }}
         >
-          Add Milestone
+          Legg til
         </button>
       </div>
     </div>

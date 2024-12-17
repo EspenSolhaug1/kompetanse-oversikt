@@ -18,6 +18,8 @@ const MileQuizViewModal = (props: {
   setMileQuizPassed: React.Dispatch<React.SetStateAction<boolean>>;
   quizId: number | undefined;
   setFailedAttempt: React.Dispatch<React.SetStateAction<boolean>>;
+  displayScore: number;
+  setDisplayScore: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const quizData = props.data || [];
@@ -56,6 +58,7 @@ const MileQuizViewModal = (props: {
         );
         if (sum / (props.currentQuestionIndex + 1) >= 0.75) {
           props.setMileQuizPassed(true);
+          props.setDisplayScore(sum + 1);
         } else {
           props.setMileQuizPassed(false);
         }
