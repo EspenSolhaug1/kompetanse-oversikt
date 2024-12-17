@@ -90,7 +90,9 @@ const MilestoneComponent = (props: {
       }
     >
       <h2>{props.milestone.title}</h2>
-      <h3>{props.milestone.description}</h3>
+      <h3 className="desc">
+        <i>{props.milestone.description}</i>
+      </h3>
       {!loading && (
         <>
           <MileQuizViewModal
