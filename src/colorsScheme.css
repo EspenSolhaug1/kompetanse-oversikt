@@ -3,4 +3,7 @@
   --navbar-background: #004085;
   --content-background: hsl(208, 20%, 70%);
   --content-background-shadow: hsl(210, 13%, 15%);
+  --edit-btn: hsl(210, 10%, 50%);
+  --first-item-in-list: hsl(168, 26%, 40%);
+  --sencond-item-in-list: hsl(85, 10%, 37%);
 }
