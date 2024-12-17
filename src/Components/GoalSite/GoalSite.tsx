@@ -11,7 +11,7 @@ import AddMilestoneComponent from "./AddMilestoneComponent";
 
 const GoalSite: React.FC = () => {
   const { id } = useParams();
-  const { userProfile } = useContext(myContext) as myContextType;
+  const { userProfile, isExiting } = useContext(myContext) as myContextType;
 
   const [loading, setLoading] = useState<boolean>(true);
   const [loadGoal, setLoadGoal] = useState<boolean>(true);
@@ -59,7 +59,7 @@ const GoalSite: React.FC = () => {
     try {
       const updatedGoal = {
         name: editedName,
-        difficulty: editedDifficulty,
+        difficulty: editedDifficulty - 1,
       };
 
       await axios.put(`https://localhost:7293/api/goal/${id}`, updatedGoal);
@@ -75,17 +75,20 @@ const GoalSite: React.FC = () => {
   };
 
   return (
-    <div className="content-background">
+    <div className={`content-background ${isExiting ? "exit" : ""}`}>
       {loadGoal ? (
-        <p>Loading...</p>
+        <p>Laster...</p>
       ) : (
         <>
           <div>
             {!isEditing ? (
               <>
                 <h1>{theGoal?.name}</h1>
-                <p>Difficulty: {"⭐".repeat((theGoal?.difficulty || 1) + 1)}</p>
-                <button onClick={handleEditToggle}>Edit</button>
+                <p>
+                  Vanskelighetsgrad:{" "}
+                  {"⭐".repeat((theGoal?.difficulty || 1) + 1)}
+                </p>
+                <button onClick={handleEditToggle}>Endre</button>
               </>
             ) : (
               <div className="edit-goal">
@@ -93,25 +96,24 @@ const GoalSite: React.FC = () => {
                   type="text"
                   value={editedName}
                   onChange={(e) => setEditedName(e.target.value)}
-                  placeholder="Edit Goal Name"
+                  placeholder="Endre målnavn"
                 />
                 <input
                   type="number"
                   value={editedDifficulty}
                   onChange={(e) =>
                     setEditedDifficulty(
-                      Math.max(0, Math.min(2, Number(e.target.value)))
+                      Math.max(0, Math.min(3, Number(e.target.value)))
                     )
                   }
-                  placeholder="Edit Difficulty (0-2)"
-                  min={0}
-                  max={2}
+                  placeholder="Endre vanskelighetsgrad (1-3)"
+                  min={1}
+                  max={3}
                 />
-                <button onClick={handleSave}>Save</button>
-                <button onClick={handleEditToggle}>Cancel</button>
+                <button onClick={handleSave}>Lagre</button>
+                <button onClick={handleEditToggle}>Avbryt</button>
               </div>
             )}
-            <button>Take Final Quiz</button>
           </div>
           <AddMilestoneComponent
             setLoading={setLoading}

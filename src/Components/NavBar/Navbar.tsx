@@ -4,7 +4,7 @@ import { myContext, myContextType } from "../../App";
 import "./Navbar.css";
 
 export default function Navbar() {
-  const { userProfile, setUserProfile } = useContext(
+  const { userProfile, setUserProfile, handlePageExit } = useContext(
     myContext
   ) as myContextType;
   const navigate = useNavigate();
@@ -14,6 +14,14 @@ export default function Navbar() {
     localStorage.removeItem("loggedInUser");
     navigate(`/`);
     setUserProfile(null);
+  };
+
+  const navigateProfile = () => {
+    handlePageExit(() => navigate("/"));
+  };
+
+  const navigateGoal = (goalId: number) => {
+    handlePageExit(() => navigate(`/goals/${goalId}`));
   };
 
   // Determine the name for the second button
@@ -29,7 +37,7 @@ export default function Navbar() {
       {/* Left-side buttons */}
       <div className="menu-items">
         {/* User name button */}
-        <button className="navbar-btn" onClick={() => navigate("/")}>
+        <button className="navbar-btn" onClick={navigateProfile}>
           {userProfile?.name || "User"}
         </button>
 
@@ -38,7 +46,7 @@ export default function Navbar() {
           <button className="navbar-btn drop-btn">{secondButtonName}</button>
           <div className="drop-content">
             {userProfile?.goalList.map((goal) => (
-              <a key={goal.id} onClick={() => navigate(`/goals/${goal.id}`)}>
+              <a key={goal.id} onClick={() => navigateGoal(goal.id)}>
                 {goal.name}
               </a>
             ))}

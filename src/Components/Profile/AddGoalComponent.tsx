@@ -45,7 +45,7 @@ const AddGoalComponent = () => {
           name="goalName"
           type="text"
           required
-          placeholder="Add a Goal"
+          placeholder="Legg til mål"
           onChange={handleNameChange}
           value={goalName}
         />
@@ -55,9 +55,9 @@ const AddGoalComponent = () => {
           onChange={handleDifficultyChange}
           required
         >
-          <option value={0}>1 - Easy</option>
+          <option value={0}>1 - Lett</option>
           <option value={1}>2 - Medium</option>
-          <option value={2}>3 - Hard</option>
+          <option value={2}>3 - Vanskelig</option>
         </select>
         <button
           className="add-user-button"
