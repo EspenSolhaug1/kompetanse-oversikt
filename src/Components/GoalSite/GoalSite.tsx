@@ -83,17 +83,31 @@ const GoalSite: React.FC = () => {
           <div>
             {!isEditing ? (
               <>
-                <h1>{theGoal?.name}</h1>
-                <p>
-                  Vanskelighetsgrad:{" "}
-                  {"⭐".repeat((theGoal?.difficulty || 1) + 1)}
-                </p>
-                <button onClick={handleEditToggle}>Endre</button>
+                <div className="goalAndEditBtn">
+                  <h1>{theGoal?.name}</h1>
+                  <p>{"⭐".repeat((theGoal?.difficulty || 0) + 1)}</p>
+                  <button className="editBtn" onClick={handleEditToggle}>
+                    <svg
+                      className="editSVG"
+                      fill="none"
+                      stroke="darkBlue"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      viewBox="0 0 24 24"
+                      height="1em"
+                      width="1em"
+                    >
+                      <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+                    </svg>
+                  </button>
+                </div>
               </>
             ) : (
               <div className="edit-goal">
                 <input
                   type="text"
+                  className="form-control"
                   value={editedName}
                   onChange={(e) => setEditedName(e.target.value)}
                   placeholder="Endre målnavn"
@@ -110,18 +124,22 @@ const GoalSite: React.FC = () => {
                   min={1}
                   max={3}
                 />
-                <button onClick={handleSave}>Lagre</button>
-                <button onClick={handleEditToggle}>Avbryt</button>
+                <button className="comfirmBtn" onClick={handleSave}>
+                  ✅
+                </button>
+                <button className="cancelBtn" onClick={handleEditToggle}>
+                  ❌
+                </button>
               </div>
             )}
           </div>
+          <hr />
           <AddMilestoneComponent
             setLoading={setLoading}
             loading={loading}
             index={2}
             goalId={Number(id)}
           />
-          <hr />
           <div className="goalsBox">
             {milestoneListObj?.map((milestone, index) => {
               return (

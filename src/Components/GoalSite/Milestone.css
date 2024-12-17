@@ -16,13 +16,8 @@
 
 .addMilestoneDiv {
   display: flex;
-  flex-direction: row;
-}
-.addMilestoneInputsDiv {
-  display: flex;
   flex-direction: column;
 }
-
 .addMilestoneInput {
   background-color: #9bc4bc;
   border-color: #9bc4bc;

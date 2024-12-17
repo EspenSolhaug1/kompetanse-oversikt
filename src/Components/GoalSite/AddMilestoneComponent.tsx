@@ -57,22 +57,20 @@ const AddMilestoneComponent = (props: {
   };
 
   return (
-    <div className="addMilestone">
-      <div className="addMilestoneDiv">
-        <div className="addMilestoneInputsDiv">
-          <input
-            type="text"
-            id="milestoneValue"
-            placeholder="Legg til milepæl..."
-            className="addMilestoneInput"
-          />
-          <input
-            type="text"
-            id="milestoneDescription"
-            placeholder="Legg til beskrivelse..."
-            className="addMilestoneInput"
-          />
-        </div>
+    <div className="addGoalContainer">
+      <form className="add-goal-form">
+        <input
+          type="text"
+          id="milestoneValue"
+          placeholder="Legg til milepæl..."
+          required
+        />
+        <input
+          type="text"
+          id="milestoneDescription"
+          placeholder="Legg til beskrivelse..."
+          required
+        />
         <button
           onClick={() => {
             buttonClicked();
@@ -80,7 +78,7 @@ const AddMilestoneComponent = (props: {
         >
           Legg til
         </button>
-      </div>
+      </form>
     </div>
   );
 };
