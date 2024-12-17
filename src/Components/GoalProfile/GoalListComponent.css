@@ -77,13 +77,13 @@
 }
 .add-goal-form > * {
   flex-grow: 3;
-  background-color: #9bc4bc;
+  background-color: var(--first-item-in-list);
   color: #1d1d1d;
   border: 1px solid black;
 }
 
 .add-goal-form > button:hover {
-  background: #94bbb3;
+  background: var(--first-item-in-list-hover);
 }
 .add-goal-form > button {
   border-radius: 0;
