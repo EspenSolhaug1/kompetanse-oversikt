@@ -6,8 +6,8 @@
 }
 
 .skill-card {
-  flex: 0 1 calc(20% - 10px); /* Default: 4 cards per row */
-  max-width: calc(20% - 10px);
+  flex: 0 1 calc(25% - 10px);
+  max-width: calc(25% - 10px);
   background: #005b5b;
   color: white;
   padding: 16px;
@@ -19,29 +19,29 @@
 @media (max-width: 992px) {
   /* Bootstrap 'md' breakpoint */
   .skill-card {
-    flex: 0 1 calc(25% - 10px); /* 3 cards per row */
-    max-width: calc(25% - 10px);
+    flex: 0 1 calc(33.333% - 10px); /* 3 cards per row */
+    max-width: calc(33.333% - 10px);
   }
 }
 
 @media (max-width: 768px) {
   /* Bootstrap 'sm' breakpoint */
   .skill-card {
-    flex: 0 1 calc(33.333% - 10px); /* 2 cards per row */
-    max-width: calc(33.333% - 10px);
+    flex: 0 1 calc(50% - 10px); /* 2 cards per row */
+    max-width: calc(50% - 10px);
   }
 }
 
 @media (max-width: 576px) {
   /* Bootstrap 'xs' breakpoint */
   .skill-card {
-    flex: 0 1 calc(50% - 10px); /* 1 card per row */
+    flex: 0 1 calc(50% - 10px); /* 2 card per row */
     max-width: calc(50% - 10px);
   }
 }
 
 @media (max-width: 435px) {
-  /* Bootstrap 'xs' breakpoint */
+  /* Bootstrap 'xxs' breakpoint */
   .skill-card {
     flex: 0 1 calc(100% - 10px); /* 1 card per row */
     max-width: calc(100% - 10px);
