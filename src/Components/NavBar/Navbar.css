@@ -11,10 +11,10 @@
   justify-content: space-between;
   background-color: var(--navbar-background);
   padding: 10px 15vw;
-  color: white;
+  color: var(--font-white);
   font-family: Arial, Helvetica, sans-serif;
   height: 80px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px var(--shadow-box);
   z-index: 1000;
 }
 
@@ -28,7 +28,7 @@
 .navbar-btn {
   background: none;
   border: none;
-  color: white;
+  color: var(--font-white);
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
@@ -45,9 +45,9 @@
 }
 
 .navbar-btn:hover {
-  background-color: #004085;
+  background-color: var(--navbar-background);
   border-radius: 5px;
-  color: white;
+  color: var(--font-white);
 }
 
 /* Dropdown */
@@ -60,8 +60,8 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #0069d9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--dropdown-button);
+  box-shadow: 0 4px 6px var(--shadow-box);
   border-radius: 5px;
   z-index: 1000;
   cursor: pointer;
@@ -71,13 +71,13 @@
   display: block;
   padding: 10px 15px;
   text-decoration: none;
-  color: white;
+  color: var(--font-white);
   font-weight: normal;
   transition: background-color 0.3s ease;
 }
 
 .dropdown .drop-content a:hover {
-  background-color: #004085;
+  background-color: var(--dropdown-button-hover);
 }
 
 .dropdown:hover .drop-content {
@@ -86,9 +86,9 @@
 
 /* Logout button */
 .logout-button {
-  background-color: #dc3545;
+  background-color: var(--btn-red);
   border: none;
-  color: white;
+  color: var(--font-white);
   font-weight: bold;
   padding: 5px 10px;
   border-radius: 5px;
@@ -98,7 +98,7 @@
 }
 
 .logout-button:hover {
-  background-color: #bd2130;
+  background-color: var(--btn-red-hover);
 }
 
 .logoutBtn{

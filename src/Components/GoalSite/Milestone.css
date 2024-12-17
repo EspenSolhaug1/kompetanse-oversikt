@@ -19,15 +19,15 @@
   flex-direction: column;
 }
 .addMilestoneInput {
-  background-color: #9bc4bc;
-  border-color: #9bc4bc;
+  background-color: var(--first-item-in-list);
+  border-color: var(--first-item-in-list);
   width: 15em;
   color: black;
   border: 15%;
 }
 
 .quiz-fail-msg {
-  color: red;
+  color: var(--btn-red);
   font-size: 20px;
 }
 .quiz-passed-msg {
@@ -60,7 +60,7 @@
 }
 .closeModalBtn {
   border-radius: 10px;
-  background-color: red;
+  background-color: var(--btn-red);
   padding: 0 15px 0 15px;
   font-size: larger;
 }
