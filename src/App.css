@@ -42,3 +42,54 @@
     transform: translate(100vw, 0);
   }
 }
+
+.editBtn {
+  background: none;
+  margin-bottom: 20px;
+}
+
+.editSVG:hover {
+  box-shadow: 0 0 15px 5px rgb(189, 189, 189);
+  transform: scale(1.03);
+}
+.titleAndEditBtn {
+  display: flex;
+  margin-top: 10px;
+}
+
+.goalAndEditBtn {
+  display: flex;
+  margin: 10px 0 50px 0;
+}
+.goalAndEditBtn > p {
+  margin-left: 10px;
+}
+
+.title-and-epost > h5 {
+  width: 200px;
+}
+
+.form-control {
+  width: fit-content;
+}
+.cancelBtn {
+  background: none;
+}
+.cancelBtn:hover {
+  font-size: large;
+}
+.comfirmBtn {
+  background: none;
+}
+.comfirmBtn:hover {
+  font-size: large;
+}
+.edit-goal {
+  display: flex;
+  margin: 10px 0 20px 0;
+}
+.edit-goal > input {
+  margin-left: 10px;
+  background: white;
+  color: black;
+}

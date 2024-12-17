@@ -17,7 +17,7 @@ const Profile = () => {
   const [editedJobTitle, setEditedJobTitle] = useState(
     userProfile?.jobTitle || ""
   );
-  
+
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
   };
@@ -55,10 +55,10 @@ const Profile = () => {
   return (
     <div className={`content-background ${isExiting ? "exit" : ""}`}>
       <div className="top-info">
-        <div className="d-flex align-items-center justify-content-center position-relative w-100">
+        <div className="titleAndEditBtn">
           {!isEditing ? (
             <h2 className="text-center m-0 flex-grow-1">
-              {userProfile?.name || "Guest"}!
+              {userProfile?.name || "Guest"}
             </h2>
           ) : (
             <input
@@ -69,17 +69,38 @@ const Profile = () => {
               placeholder="Skriv navn"
             />
           )}
-          <button
-            className="btn btn-primary position-absolute end-0"
-            onClick={isEditing ? handleSave : handleEditToggle}
-          >
-            {isEditing ? "Lagre" : "Endre"}
-          </button>
+          {!isEditing ? (
+            <button className="editBtn" onClick={handleEditToggle}>
+              <svg
+                className="editSVG"
+                fill="none"
+                stroke="darkBlue"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+                height="1em"
+                width="1em"
+              >
+                <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+              </svg>
+            </button>
+          ) : (
+            <div>
+              <button className="comfirmBtn" onClick={handleSave}>
+                {" "}
+                ✅
+              </button>
+              <button className="cancelBtn" onClick={handleEditToggle}>
+                ❌
+              </button>
+            </div>
+          )}
         </div>
         <hr className="my-2 text-center" />
-        <div className="title-and-epost d-flex justify-content-between text-center">
+        <div className="title-and-epost">
           {!isEditing ? (
-            <h5 className="m-0">{userProfile?.jobTitle}</h5>
+            <h5 className="as">{userProfile?.jobTitle}</h5>
           ) : (
             <input
               type="text"

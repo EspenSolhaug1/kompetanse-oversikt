@@ -29,11 +29,6 @@
   border-bottom-right-radius: 20px;
 }
 
-.goalsBox > :first-child {
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
 .goalTitle {
   display: flex;
   justify-content: flex-start;
@@ -68,6 +63,7 @@
 
 .addGoalContainer {
   display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
