@@ -23,7 +23,6 @@ const GoalSite: React.FC = () => {
   const [editedName, setEditedName] = useState("");
   const [editedDifficulty, setEditedDifficulty] = useState<number>(1);
 
-
   useEffect(() => {
     const fetchGoal = async () => {
       setLoadGoal(true);
@@ -81,7 +80,7 @@ const GoalSite: React.FC = () => {
         <p>Loading...</p>
       ) : (
         <>
-          <div className="col">
+          <div>
             {!isEditing ? (
               <>
                 <h1>{theGoal?.name}</h1>
