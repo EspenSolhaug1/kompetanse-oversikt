@@ -80,7 +80,7 @@ const MilestoneComponent = (props: {
 
   return (
     <div
-      className="col goals"
+      className="goals"
       style={
         {
           background: props.index % 2 === 0 ? "#4b5043" : "#9bc4bc",

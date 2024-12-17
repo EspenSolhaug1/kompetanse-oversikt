@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { myContext } from "../../App";
+import "../GoalProfile/GoalListComponent.css";
 
 const API_URL = "https://localhost:7293/api";
 

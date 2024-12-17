@@ -10,11 +10,17 @@
   align-items: center;
   justify-content: space-between;
   background-color: #0056b3;
-  padding: 10px 20px;
+  padding: 10px 15vw;
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   height: 60px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 992px) {
+  .navbar {
+    padding: 10px;
+  }
 }
 
 /* Navbar buttons */
@@ -32,6 +38,9 @@
 .drop-btn {
   width: 300px;
   text-align: start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .navbar-btn:hover {

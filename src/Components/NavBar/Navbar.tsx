@@ -38,11 +38,7 @@ export default function Navbar() {
           <button className="navbar-btn drop-btn">{secondButtonName}</button>
           <div className="drop-content">
             {userProfile?.goalList.map((goal) => (
-              <a
-                key={goal.id}
-                onClick={() => navigate(`/goals/${goal.id}`)}
-                href="#"
-              >
+              <a key={goal.id} onClick={() => navigate(`/goals/${goal.id}`)}>
                 {goal.name}
               </a>
             ))}
