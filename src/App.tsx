@@ -22,20 +22,6 @@ export const myContext = createContext<myContextType>(contextInitialValues);
 
 function App() {
   const [userProfile, setUserProfile] = useState<UserType | null>(null);
-  /* Using dummy data in development
-  useEffect(() => {
-    setUserProfile(MockProfileData?[1]);
-  }, []);
-  */
-
-  /*
-  useEffect(() => {
-    fetch(`http:localhost:4000/user`)
-    .then((response) => response.json())
-    .then ((user) => setUserProfile(user))
-  }, [userProfile]);
-  */
-
 
   return (
     <>

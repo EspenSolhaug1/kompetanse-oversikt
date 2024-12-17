@@ -65,3 +65,18 @@
     font-size: medium;
   }
 }
+
+.addGoalContainer {
+  display: flex;
+  width: 100%;
+}
+
+.add-goal-form {
+  display: inherit;
+  width: inherit;
+}
+.add-goal-form > * {
+  flex-grow: 3;
+  border-radius: 0;
+  background-color: #9bc4bc;
+}
