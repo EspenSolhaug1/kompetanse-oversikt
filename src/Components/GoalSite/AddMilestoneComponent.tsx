@@ -1,3 +1,4 @@
+import "./Milestone.css";
 const AddMilestoneComponent = (props: {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,9 +15,18 @@ const AddMilestoneComponent = (props: {
       return;
     }
 
+    const milestoneDescription = (
+      document.getElementById("milestoneDescription") as HTMLInputElement
+    ).value;
+
+    if (!milestoneDescription.trim()) {
+      alert("Description title cannot be empty!");
+      return;
+    }
+
     const milestone = {
       title: milestoneTitle,
-      description: "This is a new milestone",
+      description: milestoneDescription,
       status: true,
     };
 
@@ -46,34 +56,23 @@ const AddMilestoneComponent = (props: {
     }
   };
 
-  const hoverColor = props.index % 2 === 0 ? "#606855" : "#4b8176";
-
   return (
-    <div
-      className="col goals"
-      style={
-        {
-          background: props.index % 2 === 0 ? "#4b5043" : "#9bc4bc",
-          color: props.index % 2 === 0 ? "#e7e9eb" : "inherit",
-          "--hover-color": hoverColor,
-        } as React.CSSProperties
-      }
-    >
-      <div className="addMilestoneDiv" style={{ display: "flex" }}>
-        <input
-          type="text"
-          id="milestoneValue"
-          placeholder="Add a Milestone..."
-          style={{
-            backgroundColor: "#9bc4bc",
-            borderColor: "#9bc4bc",
-            height: "100px",
-            width: "550px",
-            color: "black",
-            border: "15%",
-            fontSize: "40px",
-          }}
-        />
+    <div className="addMilestone">
+      <div className="addMilestoneDiv">
+        <div className="addMilestoneInputsDiv">
+          <input
+            type="text"
+            id="milestoneValue"
+            placeholder="Add a Milestone..."
+            className="addMilestoneInput"
+          />
+          <input
+            type="text"
+            id="milestoneDescription"
+            placeholder="Add description."
+            className="addMilestoneInput"
+          />
+        </div>
         <button
           onClick={() => {
             buttonClicked();

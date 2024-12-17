@@ -20,7 +20,4 @@ export interface GenerateQuizRequest {
 export interface GenerateQuizResponse {
   questions: QuizQuestionType[];
 }
-export interface UpdateQuizRequest {
-  score: number;
-  status: boolean;
-}
+

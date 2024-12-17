@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MilestoneType } from "../../types/MilestoneType";
 import { GenerateQuizRequest, QuizQuestionType } from "../../types/QuizType";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
-
+import "./Milestone.css";
 const MilestoneComponent = (props: {
   milestone: MilestoneType;
   index: number;
@@ -20,9 +20,11 @@ const MilestoneComponent = (props: {
   //Check if quiz is finished
   const [quizFinished, setQuizFinished] = useState<boolean>(false);
   //Score for each milestone
-  const [score, setScore] = useState<number>(1);
+  const [score, setScore] = useState<number[]>([]);
   //Get the id for the quiz
   const [quizId, setQuizId] = useState<number | undefined>(undefined);
+  //Boolean for failed attempt
+  const [failedAttempt, setFailedAttempt] = useState<boolean>(false);
   //UseEffect for generating quiz if no quiz is available
 
   useEffect(() => {
@@ -105,10 +107,11 @@ const MilestoneComponent = (props: {
             mileQuizPassed={mileQuizPassed}
             setMileQuizPassed={setMileQuizPassed}
             quizId={quizId}
+            setFailedAttempt={setFailedAttempt}
           />
           {!mileQuizPassed ? (
             <>
-              {score > 1 && (
+              {failedAttempt && (
                 <p className="quiz-fail-msg">Quiz failed, try again</p>
               )}
               <button onClick={buttonClicked}>Ta miniquiz</button>

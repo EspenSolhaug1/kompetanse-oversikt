@@ -12,16 +12,12 @@ import AddMilestoneComponent from "./AddMilestoneComponent";
 const GoalSite: React.FC = () => {
   const { id } = useParams();
   const { userProfile } = useContext(myContext) as myContextType;
-  //const [goal, setGoal] = useState<GoalType | undefined>(undefined);
-  const [score, setScore] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(true);
   const [loadGoal, setLoadGoal] = useState<boolean>(true);
-  //const [quizFinished, setQuizFinished] = useState<boolean>(false);
   const [theGoal, setTheGoal] = useState<GoalType | undefined>(undefined);
   const [milestoneListObj, setMilestoneListObj] = useState<
     MilestoneType[] | undefined
   >(undefined);
-
 
   useEffect(() => {
     const fetchGoal = async () => {
@@ -49,7 +45,6 @@ const GoalSite: React.FC = () => {
   useEffect(() => {
     if (theGoal != undefined) {
       setMilestoneListObj(theGoal.milestoneList);
-      // console.log(milestoneListObj);
     }
   }, [theGoal]);
 
@@ -63,6 +58,12 @@ const GoalSite: React.FC = () => {
             <h1>{theGoal?.name}</h1>
             <button>Ta Final Quiz</button>
           </div>
+          <AddMilestoneComponent
+            setLoading={setLoading}
+            loading={loading}
+            index={2}
+            goalId={Number(id)}
+          />
           <hr />
           <div className="goalsBox">
             {milestoneListObj?.map((milestone, index) => {
@@ -76,12 +77,6 @@ const GoalSite: React.FC = () => {
               );
             })}
           </div>
-          <AddMilestoneComponent
-            setLoading={setLoading}
-            loading={loading}
-            index={2}
-            goalId={id}
-          />
         </>
       )}
     </div>
