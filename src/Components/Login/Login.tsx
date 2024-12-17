@@ -91,6 +91,7 @@ const Login = () => {
             onChange={handleChange}
             value={email}
             placeholder="someone@gmail.com"
+            required
           />
           <label htmlFor="password">Passord: </label>
           <input
@@ -98,6 +99,7 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="password"
+            required
           />
                 {errorBool && <h3 className="errorMessage">{errorMessage}</h3>}
           <input type="submit" value="Logg inn!" className="btn-submit"/>
