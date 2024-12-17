@@ -21,8 +21,11 @@ const GoalInstanceProfile = (props: { goal: GoalType; index: number }) => {
       className="goalInstanceComponent"
       style={
         {
-          background: props.index % 2 === 0 ? "#4b5043" : "#9bc4bc",
-          color: props.index % 2 === 0 ? "#e7e9eb" : "inherit",
+          background:
+            props.index % 2 === 0
+              ? "var(--second-item-in-list)"
+              : "var(--first-item-in-list)",
+          color: props.index % 2 === 0 ? "var(--font-white)" : "inherit",
           "--hover-color": hoverColor, // Add custom property here
         } as React.CSSProperties
       } // Type assertion to avoid TypeScript errors
