@@ -9,7 +9,63 @@
   border-radius: 8px;
   max-width: 80%;
   width: 70vw;
-  height: 70vh;
+  height: 90vh;
   max-height: 80%;
   overflow-y: auto;
+}
+
+.addMilestoneDiv {
+  display: flex;
+  flex-direction: row;
+}
+.addMilestoneInputsDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.addMilestoneInput {
+  background-color: #9bc4bc;
+  border-color: #9bc4bc;
+  width: 15em;
+  color: black;
+  border: 15%;
+}
+
+.quiz-fail-msg {
+  color: red;
+  font-size: 20px;
+}
+.quiz-passed-msg {
+  color: green;
+  font-size: 25px;
+}
+.topInfo {
+  display: flex;
+  justify-content: space-between;
+}
+.quizBtn {
+  margin: 0 5px;
+}
+.quizBottomDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+}
+.quizDir {
+  display: flex;
+}
+.quizBtnDir {
+  background: none;
+  font-size: 25px;
+}
+.quizSubmitBtn {
+  margin: 5px 0 5px 0;
+  padding: 0px 10px 0 10px;
+  border-radius: 10px;
+}
+.closeModalBtn {
+  border-radius: 10px;
+  background-color: red;
+  padding: 0 15px 0 15px;
+  font-size: larger;
 }

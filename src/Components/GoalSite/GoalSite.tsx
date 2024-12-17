@@ -19,11 +19,10 @@ const GoalSite: React.FC = () => {
   const [milestoneListObj, setMilestoneListObj] = useState<
     MilestoneType[] | undefined
   >(undefined);
-
-  // Edit mode states
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState("");
   const [editedDifficulty, setEditedDifficulty] = useState<number>(1);
+
 
   useEffect(() => {
     const fetchGoal = async () => {
@@ -115,6 +114,12 @@ const GoalSite: React.FC = () => {
             )}
             <button>Take Final Quiz</button>
           </div>
+          <AddMilestoneComponent
+            setLoading={setLoading}
+            loading={loading}
+            index={2}
+            goalId={Number(id)}
+          />
           <hr />
           <div className="goalsBox">
             {milestoneListObj?.map((milestone, index) => {
@@ -128,12 +133,6 @@ const GoalSite: React.FC = () => {
               );
             })}
           </div>
-          <AddMilestoneComponent
-            setLoading={setLoading}
-            loading={loading}
-            index={2}
-            goalId={Number(id)}
-          />
         </>
       )}
     </div>

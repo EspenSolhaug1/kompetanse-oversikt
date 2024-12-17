@@ -20,9 +20,3 @@
     width: 100vw;
   }
 }
-.quiz-fail-msg {
-  color: red;
-}
-.quiz-passed-msg {
-  color: green;
-}

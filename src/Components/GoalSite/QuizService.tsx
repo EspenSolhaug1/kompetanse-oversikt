@@ -7,6 +7,7 @@ export const generateQuiz = async (
   data: GenerateQuizRequest
 ): Promise<QuizQuestionType[]> => {
   try {
+    //IF already exists, dont
     const response = await axios.post(`${API_URL}/Quiz/generate`, data);
 
     // Extract the quiz content
@@ -29,13 +30,11 @@ export const generateQuiz = async (
 const sendToDB = async (quiz: QuizQuestionType[], id: number) => {
   // Post quiz to db
   let response;
-  console.log(id);
   const paraToAxios = {
     score: 0,
     status: false,
     questions: quiz,
   };
-  console.log(paraToAxios);
   try {
     response = await axios.post(
       `${API_URL}/quizq/milestone/${id}`,
@@ -44,5 +43,4 @@ const sendToDB = async (quiz: QuizQuestionType[], id: number) => {
   } catch (error: any) {
     console.error(error.message);
   }
-  console.log(response);
 };
