@@ -91,7 +91,10 @@ const MilestoneComponent = (props: {
       className="goals"
       style={
         {
-          background: props.index % 2 === 0 ? "#4b5043" : "#9bc4bc",
+          background:
+            props.index % 2 === 0
+              ? "var(--second-item-in-list)"
+              : "var(--first-item-in-list)",
           color: props.index % 2 === 0 ? "#e7e9eb" : "inherit",
           "--hover-color": hoverColor, // Add custom property here
         } as React.CSSProperties
@@ -124,7 +127,7 @@ const MilestoneComponent = (props: {
           {!mileQuizPassed ? (
             <>
               {failedAttempt && (
-                <p className="quiz-fail-msg">Quiz strøket, prøv igjen</p>
+                <p className="quiz-fail-msg">Quiz feilet, prøv igjen</p>
               )}
               <button onClick={buttonClicked}>Ta quiz</button>
             </>

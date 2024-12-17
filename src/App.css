@@ -23,7 +23,7 @@
 }
 
 .content-background.exit {
-  animation: randomMotionOut 2s ease-in-out 1 forwards;
+  animation: randomMotionOut 1s ease-in-out 1 forwards;
 }
 
 @keyframes randomMotion {
@@ -59,7 +59,7 @@
 
 .goalAndEditBtn {
   display: flex;
-  margin: 10px 0 50px 0;
+  margin: 60px 0 50px 0;
 }
 .goalAndEditBtn > p {
   margin-left: 10px;
@@ -67,6 +67,7 @@
 
 .title-and-epost > h5 {
   width: 200px;
+  margin-bottom: 40px;
 }
 
 .form-control {

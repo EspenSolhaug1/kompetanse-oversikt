@@ -4,7 +4,7 @@ import { UserLoginType } from "../../types/UserLoginType";
 import { useNavigate } from "react-router-dom";
 import { MockLoginData } from "../../ApiData/MockData";
 import { UserType } from "../../types/UserType";
-import "./Login.css"
+import "./Login.css";
 import axios from "axios";
 
 const Login = () => {
@@ -76,12 +76,8 @@ const Login = () => {
   return (
     <div className="formWrapper">
       <div className="login-page">
-        <div className="login-intro">
-          {/* <p>Bilde...</p> */}
-        
-        </div>
+        <div className="login-intro">{/* <p>Bilde...</p> */}</div>
         <form onSubmit={handleSubmit}>
-          
           <div className="login-form">
             <h1 className="loginTitle">Vennligst logg inn</h1>
             <label htmlFor="epost">Epost: </label>
@@ -99,11 +95,11 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              placeholder="password"
+              placeholder="passord"
               required
             />
-                  {errorBool && <h3 className="errorMessage">{errorMessage}</h3>}
-            <input type="submit" value="Logg inn!" className="btn-submit"/>
+            {errorBool && <h3 className="errorMessage">{errorMessage}</h3>}
+            <input type="submit" value="Logg inn!" className="btn-submit" />
           </div>
         </form>
       </div>
