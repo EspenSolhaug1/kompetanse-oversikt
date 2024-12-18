@@ -1,19 +1,20 @@
 :root {
+  --navbar-background: hsl(213, 33%, 22%); /* Deep muted blue */
+  --content-background: hsl(201, 17%, 81%); /* Very light blue-gray */
+  --edit-btn: hsl(210, 23%, 41%); /* Muted slate blue */
+  --first-item-in-list: hsl(200, 22%, 70%); /* Soft desaturated blue-gray */
+  --second-item-in-list: hsl(210, 23%, 41%); /* Muted slate blue */
+  --skill-background: hsl(213, 33%, 22%); /* Deep muted blue */
+  --dropdown-button: hsl(200, 22%, 70%); /* Soft desaturated blue-gray */
+  --button-background: hsl(210, 23%, 41%); /* Muted slate blue */
+
+  --content-background-shadow: hsl(210, 24%, 28%);
+  --first-item-in-list-hover: hsl(200, 22%, 60%);
+  --second-item-in-list-hover: hsl(210, 23%, 35%);
+  --shadow-box: hsl(210, 24%, 15%);
+  --dropdown-button-hover: hsl(210, 23%, 33%);
   --root-background: #3d618c;
-  --navbar-background: #004085;
-  --content-background: hsl(208, 20%, 70%);
-  --content-background-shadow: hsl(210, 13%, 15%);
-  --edit-btn: hsl(210, 10%, 50%);
-  --first-item-in-list: hsl(168, 26%, 69%);
-  --second-item-in-list: hsl(83, 9%, 29%);
-  --first-item-in-list-hover: hsl(168, 26%, 40%);
-  --second-item-in-list-hover: hsl(85, 10%, 37%);
   --font-white: hsl(0, 0%, 95%);
-  --skill-background: hsl(180, 100%, 18%);
-  --shadow-box: hsl(210, 24%, 18%);
-  --btn-red: hsl(353, 69%, 50%);
-  --btn-red-hover: hsl(353, 70%, 44%);
-  --dropdown-button: hsl(211, 100%, 43%);
-  --dropdown-button-hover: hsl(211, 100%, 26%);
-  --button-background: hsl(180, 100%, 15%);
+  --btn-red: hsl(354, 69%, 50%);
+  --btn-red-hover: hsl(354, 70%, 44%);
 }
