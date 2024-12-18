@@ -4,10 +4,14 @@ import "./colorsScheme.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 import Profile from "./Components/Profile/Profile";
-import Login from "./Components/Login/Login";
+// import Login from "./Components/Login/Login";
 import GoalSite from "./Components/GoalSite/GoalSite";
 import { UserType } from "./types/UserType";
 import { createContext, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { UserProvider } from "./Context/useAuth";
+import { LoginPage } from "./Components/LoginPage/LoginPage";
 
 export interface myContextType {
   userProfile: UserType | null;
@@ -39,27 +43,33 @@ function App() {
 
   return (
     <>
-      <myContext.Provider
-        value={{
-          userProfile,
-          setUserProfile,
-          isExiting,
-          handlePageExit,
-        }}
-      >
-        {userProfile ? (
-          <>
-            <Navbar />
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/" element={<Profile />} />
-              <Route path="goals/:id" element={<GoalSite />} />
-            </Routes>
-          </>
-        ) : (
-          <Login />
-        )}
-      </myContext.Provider>
+      <UserProvider>
+        <myContext.Provider
+          value={{
+            userProfile,
+            setUserProfile,
+            isExiting,
+            handlePageExit,
+          }}
+        >
+          {userProfile ? (
+            <>
+              <Navbar />
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/" element={<Profile />} />
+                <Route path="goals/:id" element={<GoalSite />} />
+              </Routes>
+              <ToastContainer />
+            </>
+          ) : (
+            <>
+            <LoginPage />
+             
+            </>
+          )}
+        </myContext.Provider>
+      </UserProvider>
     </>
   );
 }
