@@ -15,7 +15,10 @@ const GoalInstanceProfile = (props: { goal: GoalType; index: number }) => {
     navigate(`/goals/${props.goal.id}`);
   };
 
-  const hoverColor = props.index % 2 === 0 ? "#606855" : "#4b8176";
+  const hoverColor =
+    props.index % 2 === 0
+      ? "var(--second-item-in-list-hover)"
+      : "var(--first-item-in-list-hover)";
   return (
     <div
       className="goalInstanceComponent"
