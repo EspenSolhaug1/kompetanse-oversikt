@@ -5,13 +5,15 @@
   transform: translate(-50%, -50%);
   background-color: white;
   border: 1px solid #ccc;
+  margin-top: 20px;
   padding: 20px;
   border-radius: 8px;
   max-width: 80%;
-  width: 70vw;
+  width: 65vw;
   height: 90vh;
   max-height: 80%;
   overflow-y: auto;
+  box-shadow: 0px 0px 5px gray;
 }
 
 .addMilestoneDiv {
@@ -36,28 +38,31 @@
 }
 .topInfo {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
 }
 .quizBtn {
+  inherits: none;
   margin: 0 5px;
 }
 .quizBottomDiv {
   display: flex;
-  justify-content: space-between;
-  width: 500px;
+  width: 33.2vw;
 }
 .quizDir {
   display: flex;
+  padding: 10px 0;
+  justify-content: space-between;
 }
 .quizBtnDir {
   background: none;
-  font-size: 25px;
+  font-size: 10px;
 }
-.quizSubmitBtn {
-  margin: 5px 0 5px 0;
-  padding: 0px 10px 0 10px;
-  border-radius: 10px;
+.quizDir {
+  display: flex;
+  justify-content: right;
+  margin-left: 20px;
 }
+
 .closeModalBtn {
   border-radius: 10px;
   background-color: var(--btn-red);
@@ -68,7 +73,20 @@
 .desc {
   font-size: 1em;
 }
+.quizSubmitBtn {
+  margin-left: 20px;
+}
 
+.quiz-content {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  width: 50%;
+}
+.quiz-content > h2 {
+  justify-content: left;
+}
 .takeQuizBtn {
   border-radius: 5px;
   border: none;
@@ -82,4 +100,11 @@
 
 .takeQuizBtn > :hover {
   color: var(--hover-color-button);
+}
+
+.a {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
