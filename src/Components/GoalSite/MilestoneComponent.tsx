@@ -127,7 +127,7 @@ const MilestoneComponent = (props: {
           {!mileQuizPassed ? (
             <>
               {failedAttempt && (
-                <p className="quiz-fail-msg">Quiz strøket, prøv igjen</p>
+                <p className="quiz-fail-msg">Quiz feilet, prøv igjen</p>
               )}
               <button onClick={buttonClicked}>Ta quiz</button>
             </>
