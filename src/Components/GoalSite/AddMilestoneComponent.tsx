@@ -5,6 +5,10 @@ const AddMilestoneComponent = (props: {
   index: number;
   goalId: number | undefined;
 }) => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault(); // Prevent the page refresh
+    buttonClicked(); // Call your custom function when the form is submitted
+  };
   const buttonClicked = async () => {
     const milestoneTitle = (
       document.getElementById("milestoneValue") as HTMLInputElement
@@ -57,30 +61,22 @@ const AddMilestoneComponent = (props: {
   };
 
   return (
-    <div className="addMilestone">
-      <div className="addMilestoneDiv">
-        <div className="addMilestoneInputsDiv">
-          <input
-            type="text"
-            id="milestoneValue"
-            placeholder="Legg til milepæl..."
-            className="addMilestoneInput"
-          />
-          <input
-            type="text"
-            id="milestoneDescription"
-            placeholder="Legg til beskrivelse..."
-            className="addMilestoneInput"
-          />
-        </div>
-        <button
-          onClick={() => {
-            buttonClicked();
-          }}
-        >
-          Legg til
-        </button>
-      </div>
+    <div className="addGoalContainer">
+      <form className="add-goal-form" onSubmit={(e) => handleFormSubmit(e)}>
+        <input
+          type="text"
+          id="milestoneValue"
+          placeholder="Legg til milepæl..."
+          required
+        />
+        <input
+          type="text"
+          id="milestoneDescription"
+          placeholder="Legg til beskrivelse..."
+          required
+        />
+        <button type="submit">Legg til</button>
+      </form>
     </div>
   );
 };

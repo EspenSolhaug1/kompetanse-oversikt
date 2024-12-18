@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MilestoneType } from "../../types/MilestoneType";
 import { GenerateQuizRequest, QuizQuestionType } from "../../types/QuizType";
 import MileQuizViewModal from "./QuizModal/MileQuizViewModal";
+import "../Profile/Profile.css";
 import "./Milestone.css";
 const MilestoneComponent = (props: {
   milestone: MilestoneType;
@@ -85,13 +86,17 @@ const MilestoneComponent = (props: {
     openModal();
   };
   const hoverColor = props.index % 2 === 0 ? "#606855" : "#4b8176";
+  const hoverButtonColor = props.index % 2 === 0 ? "#4b8176" : "#606855";
 
   return (
     <div
       className="goals"
       style={
         {
-          background: props.index % 2 === 0 ? "#4b5043" : "#9bc4bc",
+          background:
+            props.index % 2 === 0
+              ? "var(--second-item-in-list)"
+              : "var(--first-item-in-list)",
           color: props.index % 2 === 0 ? "#e7e9eb" : "inherit",
           "--hover-color": hoverColor, // Add custom property here
         } as React.CSSProperties
@@ -124,9 +129,24 @@ const MilestoneComponent = (props: {
           {!mileQuizPassed ? (
             <>
               {failedAttempt && (
-                <p className="quiz-fail-msg">Quiz strøket, prøv igjen</p>
+                <p className="quiz-fail-msg">Quiz feilet, prøv igjen</p>
               )}
-              <button onClick={buttonClicked}>Ta quiz</button>
+              <button
+                className="takeQuizBtn"
+                onClick={buttonClicked}
+                style={
+                  {
+                    background:
+                      props.index % 2 === 0
+                        ? "var(--first-item-in-list)"
+                        : "var(--second-item-in-list)",
+                    color: props.index % 2 === 0 ? "bababa" : "#e7e9eb",
+                    "--hover-color-button": hoverButtonColor, // Add custom property here
+                  } as React.CSSProperties
+                }
+              >
+                Ta quiz
+              </button>
             </>
           ) : (
             <>

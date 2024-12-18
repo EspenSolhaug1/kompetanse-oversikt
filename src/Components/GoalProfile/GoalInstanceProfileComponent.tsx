@@ -15,14 +15,20 @@ const GoalInstanceProfile = (props: { goal: GoalType; index: number }) => {
     navigate(`/goals/${props.goal.id}`);
   };
 
-  const hoverColor = props.index % 2 === 0 ? "#606855" : "#4b8176";
+  const hoverColor =
+    props.index % 2 === 0
+      ? "var(--second-item-in-list-hover)"
+      : "var(--first-item-in-list-hover)";
   return (
     <div
       className="goalInstanceComponent"
       style={
         {
-          background: props.index % 2 === 0 ? "#4b5043" : "#9bc4bc",
-          color: props.index % 2 === 0 ? "#e7e9eb" : "inherit",
+          background:
+            props.index % 2 === 0
+              ? "var(--second-item-in-list)"
+              : "var(--first-item-in-list)",
+          color: props.index % 2 === 0 ? "var(--font-white)" : "inherit",
           "--hover-color": hoverColor, // Add custom property here
         } as React.CSSProperties
       } // Type assertion to avoid TypeScript errors

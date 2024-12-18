@@ -45,7 +45,6 @@
 }
 /* Standard button style */
 button {
-  background-color: hsl(180, 100%, 15%);
   border-radius: 5px;
   border: none;
   color: white;
