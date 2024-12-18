@@ -7,7 +7,7 @@ const API_URL = "https://localhost:7293/api";
 
 const AddGoalComponent = () => {
   const [goalName, setGoalName] = useState("");
-  const [difficulty, setDifficulty] = useState(0); 
+  const [difficulty, setDifficulty] = useState(0);
   const profileId = useContext(myContext).userProfile?.id;
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +15,7 @@ const AddGoalComponent = () => {
   };
 
   const handleDifficultyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setDifficulty(Number(e.target.value)); 
+    setDifficulty(Number(e.target.value));
   };
 
   const handleSubmit = async (param: React.FormEvent<HTMLFormElement>) => {
