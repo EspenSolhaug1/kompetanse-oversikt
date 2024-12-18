@@ -7,7 +7,6 @@
   --skill-background: hsl(213, 33%, 22%); /* Deep muted blue */
   --dropdown-button: hsl(200, 22%, 70%); /* Soft desaturated blue-gray */
   --button-background: hsl(210, 23%, 41%); /* Muted slate blue */
-
   --content-background-shadow: hsl(210, 24%, 28%);
   --first-item-in-list-hover: hsl(200, 22%, 60%);
   --second-item-in-list-hover: hsl(210, 23%, 35%);
@@ -17,4 +16,5 @@
   --font-white: hsl(0, 0%, 95%);
   --btn-red: hsl(354, 69%, 50%);
   --btn-red-hover: hsl(354, 70%, 44%);
+
 }
