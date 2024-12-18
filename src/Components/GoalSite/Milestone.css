@@ -36,7 +36,7 @@
 }
 .topInfo {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
 }
 .quizBtn {
   margin: 0 5px;
@@ -69,6 +69,15 @@
   font-size: 1em;
 }
 
+.quiz-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.quiz-content > h2 {
+  justify-content: left;
+}
 .takeQuizBtn {
   border-radius: 5px;
   border: none;

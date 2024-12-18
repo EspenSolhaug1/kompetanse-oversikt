@@ -138,49 +138,15 @@ const MileQuizViewModal = (props: {
         <>
           <div>
             <div className="topInfo">
-              <h2>
-                Question {props.currentQuestionIndex + 1} of {quizData.length}
-              </h2>
               <button className="closeModalBtn" onClick={props.closeModal}>
                 X
               </button>
             </div>
-            <button
-              className="quizBtn"
-              onClick={() => swapQuestion(0)}
-              style={{
-                background: props.score[0] == undefined ? "gray" : "blue",
-              }}
-            >
-              1
-            </button>
-            <button
-              className="quizBtn"
-              onClick={() => swapQuestion(1)}
-              style={{
-                background: props.score[1] == undefined ? "gray" : "blue",
-              }}
-            >
-              2
-            </button>
-            <button
-              className="quizBtn"
-              onClick={() => swapQuestion(2)}
-              style={{
-                background: props.score[2] == undefined ? "gray" : "blue",
-              }}
-            >
-              3
-            </button>
-            <button
-              className="quizBtn"
-              onClick={() => swapQuestion(3)}
-              style={{
-                background: props.score[3] == undefined ? "gray" : "blue",
-              }}
-            >
-              4
-            </button>
+            <div className="quiz-content">
+            <h2>
+              Question {props.currentQuestionIndex + 1} of {quizData.length}
+            </h2>
+
             <p>{quizData[props.currentQuestionIndex].content}</p>
             <div>
               {quizData[props.currentQuestionIndex]?.options.map(
@@ -219,6 +185,42 @@ const MileQuizViewModal = (props: {
                 <button className="quizBtnDir" onClick={handleNextQst}>
                   ➡️
                 </button>
+                <button
+                  className="quizBtn"
+                  onClick={() => swapQuestion(0)}
+                  style={{
+                    background: props.score[0] == undefined ? "gray" : "blue",
+                  }}
+                >
+                  1
+                </button>
+                <button
+                  className="quizBtn"
+                  onClick={() => swapQuestion(1)}
+                  style={{
+                    background: props.score[1] == undefined ? "gray" : "blue",
+                  }}
+                >
+                  2
+                </button>
+                <button
+                  className="quizBtn"
+                  onClick={() => swapQuestion(2)}
+                  style={{
+                    background: props.score[2] == undefined ? "gray" : "blue",
+                  }}
+                >
+                  3
+                </button>
+                <button
+                  className="quizBtn"
+                  onClick={() => swapQuestion(3)}
+                  style={{
+                    background: props.score[3] == undefined ? "gray" : "blue",
+                  }}
+                >
+                  4
+                </button>
               </div>
 
               {props.quizFinished && (
@@ -237,6 +239,7 @@ const MileQuizViewModal = (props: {
                   Send svar
                 </button>
               )}
+            </div>
             </div>
           </div>
         </>
